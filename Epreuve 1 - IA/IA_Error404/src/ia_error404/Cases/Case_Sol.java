@@ -5,10 +5,28 @@
  */
 package ia_error404.Cases;
 
+import ia_error404.Map;
+
 /**
  *
  * @author Beelzed
  */
-public class Case_Sol {
+public class Case_Sol extends Case{
+    private Fruit inventaire;
+
+    public Case_Sol(Fruit inventaire, Map m, int x, int y) {
+        super(m, x, y);
+        this.inventaire=inventaire;
+    }
+
+    @Override
+    public Type_Case getType() {
+        return Type_Case.Sol;
+    }
+
+    @Override
+    public boolean franchissable() {
+        return true;
+    }
     
 }
