@@ -15,9 +15,9 @@ import ia_error404.Team.Lanceur;
  * @author Beelzed
  */
 public abstract class IA {
-    protected Lanceur joueur;
-    protected Dijkstra algo;
-    protected int turn;
+    private Lanceur joueur;
+    private Dijkstra algo;
+    private int turn;
     
     public IA(Lanceur _joueur){
         this.joueur = _joueur;

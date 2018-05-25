@@ -16,5 +16,10 @@ public class IA_Lanceur extends IA {
     public IA_Lanceur(Lanceur _joueur) {
         super(_joueur);
     }
+
+    @Override
+    public String action() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
