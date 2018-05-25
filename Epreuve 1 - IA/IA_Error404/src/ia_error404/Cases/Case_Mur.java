@@ -24,7 +24,7 @@ public class Case_Mur extends Case{
         return false;
     }
 
-    public Case_Mur(Fruit inventaire, Map m, int x, int y) {
+    public Case_Mur(Map m, int x, int y) {
         super(m, x, y);
     }
     
