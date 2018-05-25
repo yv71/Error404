@@ -16,10 +16,10 @@ public class Fruit {
     private Case position;
     private Lanceur joueur;
 
-    public Fruit(Type_Fruit type, Case position) {
+    public Fruit(Type_Fruit type, Case position, Lanceur j) {
         this.type = type;
         this.position = position;
-        this.joueur = null;
+        this.joueur = j;
     }
 
     public Type_Fruit getType() {
