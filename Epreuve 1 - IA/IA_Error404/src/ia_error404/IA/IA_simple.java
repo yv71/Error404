@@ -60,11 +60,15 @@ public class IA_simple extends IA{
         Fruit minFruit = this.getMap().getListeFruitsOK().get(0);
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
         for (Fruit f : this.getMap().getListeFruits()){
+            if (this.visited.get(f)!=true){
             int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(f.getPosition()));
-            if (shortestF < shortest){
-                 shortest = shortestF;
-                 minFruit = f;
+                if (shortestF < shortest){
+                     shortest = shortestF;
+                     minFruit = f;
+                     this.visited.put(f, true);
+                }    
             }
+                
         }
         return minFruit;
     }
