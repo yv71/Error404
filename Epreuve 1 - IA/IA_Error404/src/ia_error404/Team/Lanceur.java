@@ -11,6 +11,7 @@ import ia_error404.IA.IA;
 import ia_error404.IA.IA_simple;
 import ia_error404.Map;
 import ia_error404.Objet.Fruit;
+import ia_error404.Objet.Type_Fruit;
 
 /**
  *
@@ -25,8 +26,14 @@ public class Lanceur {
     private Map map;
     private IA ia;
   
-    public Lanceur(Case cas, Map map){
-        inventaire = null;
+    public Lanceur(Case cas, Map map,String fruit){
+        switch(fruit){
+            case"0":this.inventaire=new Fruit(Type_Fruit.mirabelle,null,this);break;
+            case"1":this.inventaire=new Fruit(Type_Fruit.prune,null,this);break;
+            case"2":this.inventaire=new Fruit(Type_Fruit.cerise,null,this);break;
+            case"3":this.inventaire=new Fruit(Type_Fruit.framboise,null,this);break;
+            case"4":this.inventaire=new Fruit(Type_Fruit.chataigne,null,this);break;
+        }
         position = cas;
         this.map = map;
         this.ia = new IA_simple(this);
