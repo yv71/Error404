@@ -7,6 +7,7 @@ package ia_error404.Cases;
 
 import ia_error404.Map;
 import ia_error404.Team.Lanceur;
+import java.util.Objects;
 
 /**
  *
@@ -57,5 +58,39 @@ public abstract class Case {
     public int getY() {
         return y;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.m);
+        hash = 53 * hash + this.x;
+        hash = 53 * hash + this.y;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Case other = (Case) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        if (this.y != other.y) {
+            return false;
+        }
+        if (!Objects.equals(this.m, other.m)) {
+            return false;
+        }
+        return true;
+    }
+    
     
 }
