@@ -22,10 +22,47 @@ public class Map {
     
     private Graphe graphe;
     
+    // ----- Constructeurs ------
+    
     public Map(){
         this.graphe = new Graphe();
         this.listeCase = new ArrayList<Case>();
         this.listeFruits = new ArrayList<Fruit>();
     }
+    
+    private void genererGrapheSimple(){
+        // generation des vertices
+        for(Case c : listeCase) {
+            this.graphe.addVertex(c);
+        }
+        // generation des neighbours
+        for (Case c  : listeCase){
+            for (Case c2 : listeCase){
+                    int c2Ligne = c2.getX();
+                    int c2Col = c2.getY();
+                    int cLigne = c.getX();
+                    int cCol = c.getY();
+                    int ligne = Math.abs(c2Ligne-cLigne);
+                    int col = Math.abs(c2Col-cCol);
+                    // ajout des labels
+                    if ((ligne + col)==1){
+                    switch(c2.getType()){
+                        case Mur : this.graphe.addEdge(c,c2);
+                        this.graphe.setLabel(c,c2,2);
+                        break;
+                        case Sol : this.graphe.addEdge(c, c2);
+                        this.graphe.setLabel(c, c2, 1);
+                        break;
+                        default : System.out.println("oops");
+                    }
+                    }
+               
+                        
+                        
+                    }
+                }
+               // this.graphe_simple.afficheMatriceAdjacence();             
+           
+        }
 
 }
