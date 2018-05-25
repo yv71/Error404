@@ -7,6 +7,7 @@ package ia_error404.Team;
 
 import ia_error404.Cases.Case;
 import ia_error404.Cases.Case_Sol;
+import ia_error404.Map;
 import ia_error404.Objet.Fruit;
 
 /**
@@ -19,13 +20,17 @@ public class Lanceur {
     private Case position;
     private Equipe eq;
     private TypeJoueur type;
+    private Map map;
     //private IA ia;
   
-    public Lanceur(Case cas){
+    public Lanceur(Case cas, Map map){
         inventaire = null;
         position = cas;
+        this.map = map;
 }
-    
+    public Map getMap(){
+        return this.getMap();
+    }
     public String deplacer(int dir){ // Paramètre à définir
         String res = "";
         switch(dir){
@@ -51,5 +56,13 @@ public class Lanceur {
             case 3: res="LO"; break;
         }
         return res;
+    }
+    
+    public Case getCase(){
+        return this.position;
+    }
+    
+    public Fruit getInventaire(){
+        return this.inventaire;
     }
 }
