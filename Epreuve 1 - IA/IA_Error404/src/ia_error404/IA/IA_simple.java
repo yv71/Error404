@@ -35,7 +35,7 @@ public class IA_simple extends IA{
         String retour = "X";
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
         if (this.turn ==0){
-            this.algo.calcul(_debug, _fin);
+            this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
         if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             
@@ -55,8 +55,12 @@ public class IA_simple extends IA{
 
         Fruit minFruit = this.getMap().getListeFruits().get(0);
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
-        for (Fruit f : ){
-            
+        for (Fruit f : this.getMap().getListeFruits()){
+            int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(f.getPosition()));
+            if (shortestF < shortest){
+                 shortest = shortestF;
+                 minFruit = f;
+            }
         }
         return minFruit;
     }

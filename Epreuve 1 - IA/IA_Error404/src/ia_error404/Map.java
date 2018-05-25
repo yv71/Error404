@@ -19,6 +19,7 @@ public class Map {
     
     private final ArrayList<Case> listeCase;
     private final ArrayList<Fruit> listeFruits;
+    private final ArrayList<Fruit> listeFruitsOK;
     
     private Graphe graphe;
     
@@ -28,6 +29,8 @@ public class Map {
         this.graphe = new Graphe();
         this.listeCase = new ArrayList<Case>();
         this.listeFruits = new ArrayList<Fruit>();
+        this.listeFruitsOK = new ArrayList<Fruit>();
+        
     }
     
     private void genererGrapheSimple(){
