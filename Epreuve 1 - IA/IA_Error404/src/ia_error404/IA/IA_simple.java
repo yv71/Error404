@@ -6,6 +6,7 @@
 package ia_error404.IA;
 
 import ia_error404.Cases.Case;
+import ia_error404.Cases.Case_Base;
 import ia_error404.Objet.Fruit;
 import ia_error404.Team.Lanceur;
 
@@ -33,15 +34,18 @@ public class IA_simple extends IA{
     @Override
     public String action() {
         String retour = "X";
-        // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
+        
         if (this.turn ==0){
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
+        // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
         if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
+            retour = "P";
             
         }
         // Action lorsque le joueur vient de ramasser son fruit;
         else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()!=null){
+            retour = "P";
             
         } 
         else {
@@ -53,7 +57,7 @@ public class IA_simple extends IA{
     public Fruit minFruit(){
         
 
-        Fruit minFruit = this.getMap().getListeFruits().get(0);
+        Fruit minFruit = this.getMap().getListeFruitsOK().get(0);
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
         for (Fruit f : this.getMap().getListeFruits()){
             int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(f.getPosition()));
@@ -63,6 +67,10 @@ public class IA_simple extends IA{
             }
         }
         return minFruit;
+    }
+    
+    public Case_Base caseProche(){
+        
     }
     
 }
