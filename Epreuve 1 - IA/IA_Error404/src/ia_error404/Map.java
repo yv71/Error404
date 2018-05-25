@@ -12,6 +12,7 @@ import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
 import ia_error404.Team.Lanceur;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Map {
     private final ArrayList<Fruit> listeFruitsOK;
     private final ArrayList<Case_Base> listeBase;
     private final ArrayList<Lanceur> listeJoueur;
+    private final HashMap<Coordonnees,Case> hashCase;
 
     private Graphe graphe;
     
@@ -36,10 +38,14 @@ public class Map {
         this.listeFruitsOK = new ArrayList<Fruit>();
         this.listeBase = new ArrayList<Case_Base>();
         this.listeJoueur = new ArrayList<Lanceur>();
-        
+        this.hashCase = new HashMap<>();
     }
     
-    private void genererGrapheSimple(){
+    public HashMap<Coordonnees,Case> getHash(){
+        return this.hashCase;
+    }
+    
+    public void genererGrapheSimple(){
         // generation des vertices
         for(Case c : listeCase) {
             this.graphe.addVertex(c);
@@ -101,12 +107,17 @@ public class Map {
         }
     }
 
+    public void addFruit(Fruit f){
+        this.listeFruits.add(f);
+    }
+    
     public ArrayList<Fruit> getListeFruitsOK() {
         return this.listeFruitsOK;
     }
     
     public void addCase(Case c){
         this.listeCase.add(c);
+        this.hashCase.put(c.getCoord(),c);
     }
     
     public void addBase(Case_Base c){
@@ -128,5 +139,10 @@ public class Map {
     public void addJoueur(Lanceur e){
         this.listeJoueur.add(e);
     }
+
+    public HashMap<Coordonnees, Case> getHashCase() {
+        return hashCase;
+    }
+    
     
 }

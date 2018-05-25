@@ -141,7 +141,9 @@ public static void main(String[] args) {
 
                           }
                         for(int numLigne=0;numLigne<tailleMap;numLigne++){
+                            System.out.println("taille :" + tailleMap);
                             for(int numColonne=0;numColonne<tailleMap;numColonne++){
+   
                                 char lettre=map_pleine[numLigne][numColonne];
                                 //creation de la case
                                 Case nouvelleCase=null;
@@ -150,25 +152,34 @@ public static void main(String[] args) {
                                     break;
                                     case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
                                     break;
-                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));
+                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase,null,m));
                                     break;
-                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase,null));
+                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase,null,m));
                                     break;
-                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase,null));
+                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase,null,m));
                                     break;
-                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase,null));
+                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase,null,m));
                                     break;
-                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase,null));
+                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase,null,m));
                                     break;
                                     default:System.out.println("Type case inconnue");
                                     break;
                                 }
-                                
+                                  }
+                        }
+                                m.genererGrapheSimple();
+                                m.setFruitsOK();
+                                System.out.println(m.getListeFruitsOK());
+                                System.out.println(m.getListeFruits());
                                 //gestion des entites
                                 System.out.println(maliste.size());
-                                Lanceur q=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(0)),Integer.parseInt(maliste.get(1))))), m, maliste.get(2));
-                                Lanceur l1=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(3)),Integer.parseInt(maliste.get(4))))), m, maliste.get(5));
-                                Lanceur l2=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(6)),Integer.parseInt(maliste.get(7))))), m, maliste.get(8));
+                                System.out.println(maliste.get(0));
+                                Coordonnees coordq = new Coordonnees(new Integer(maliste.get(0)).intValue(),new Integer(maliste.get(1)).intValue());
+                                Coordonnees coordl1 =new Coordonnees(new Integer(maliste.get(3)).intValue(),new Integer(maliste.get(4)).intValue());
+                                Coordonnees coordl2 = new Coordonnees(new Integer(maliste.get(6)).intValue(),new Integer(maliste.get(7)).intValue());
+                                Lanceur q = new Lanceur(m.getHashCase().get(coordq), m, maliste.get(2));
+                                Lanceur l1=new Lanceur(m.getHashCase().get(coordl1), m, maliste.get(5));
+                                Lanceur l2=new Lanceur(m.getHashCase().get(coordl2), m, maliste.get(8));
                                 m.addJoueur(q);
                                 m.addJoueur(l1);
                                 m.addJoueur(l2);
@@ -180,8 +191,7 @@ public static void main(String[] args) {
                                 msg+="-";
                                 msg+=m.getListeJoueur().get(2).getAction();
                                 msg+="\n";
-                            }
-                        }
+                          
                     }
                     System.out.println("Serveur déconecté");
                     out.close();

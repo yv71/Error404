@@ -76,6 +76,7 @@ public class Dijkstra {
             path.add(0,v);
             v = predecessor.get(v);
         }
+        System.out.println(path);
         path.remove(0);
         return this.path.size();
  

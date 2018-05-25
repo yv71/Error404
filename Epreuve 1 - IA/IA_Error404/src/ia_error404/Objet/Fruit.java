@@ -6,6 +6,7 @@
 package ia_error404.Objet;
 
 import ia_error404.Cases.Case;
+import ia_error404.Map;
 import ia_error404.Team.Lanceur;
 /**
  *
@@ -15,11 +16,15 @@ public class Fruit {
     private Type_Fruit type;
     private Case position;
     private Lanceur joueur;
+    private Map m;
 
-    public Fruit(Type_Fruit type, Case position, Lanceur j) {
+    public Fruit(Type_Fruit type, Case position, Lanceur j, Map m) {
         this.type = type;
         this.position = position;
         this.joueur = j;
+        this.m = m;
+        m.addFruit(this);
+        
     }
 
     public Type_Fruit getType() {

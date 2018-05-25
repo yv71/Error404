@@ -56,7 +56,9 @@ public class IA_simple extends IA{
         String retour = "X";
         
         if (this.turn ==0){
-            this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
+            if (this.getMap().getListeFruitsOK().size()>0){
+                this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
+            }
         }
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
         if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){

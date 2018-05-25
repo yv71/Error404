@@ -5,6 +5,7 @@
  */
 package ia_error404.Cases;
 
+import ia_error404.Coordonnees;
 import ia_error404.Map;
 import ia_error404.Team.Lanceur;
 import java.util.Objects;
@@ -21,7 +22,7 @@ public abstract class Case {
 
     private int x;
     private int y;
-    
+    private Coordonnees coord;
     public abstract Type_Case getType();
     public abstract boolean franchissable();
    
@@ -30,9 +31,14 @@ public abstract class Case {
         this.x = x;
         this.y = y;
         this.joueur=null;
+        this.coord = new Coordonnees(x,y);
     }
 
+    public Coordonnees getCoord() {
+        return this.coord;
+    }
 
+    
      public void addLanceur(Lanceur joueur){
          if (this.joueur==null){
              this.joueur=joueur;
