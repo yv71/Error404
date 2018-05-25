@@ -6,6 +6,7 @@
 package ia_error404.Cases;
 
 import ia_error404.Map;
+import ia_error404.Objet.Fruit;
 
 /**
  *
