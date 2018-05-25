@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 /*
  * www.codeurjava.com
@@ -32,7 +33,7 @@ public static void main(String[] args) {
     final Socket clientSocket;
     final BufferedReader in;
     final PrintWriter out;
-    Fabrique f=Fabrique.get();
+    Fabrique fab=Fabrique.get();
     Map m=new Map();
     Equipe monEquipe=new Equipe("Error 404", numero_equipe);
     Equipe equipeAdv=new Equipe("Autres", "4");
@@ -94,34 +95,50 @@ public static void main(String[] args) {
                                 map_pleine[k][i] = temp12[k+1].charAt(i);
                             }
                         }
-                        
-                        
+                        ArrayList<String> maliste=null;
+                        String[] parseurTeam = msg.split(",");
+                        for (int i = 0; i < 4; i++) 
+                        {
+                           String a = parseurTeam[2+i*16+tailleMap];
+                           String b = parseurTeam[3+i*16+tailleMap];
+                           String c = parseurTeam[4+i*16+tailleMap];
+                           String[] aa = a.split(":");
+                           String[] bb = b.split(":");
+                           String[] cc = c.split(":");
+                           String aaa = aa[1];
+                           String bbb = bb[2];
+                           String ccc =  cc[3];
+
+                           maliste.add(aaa);
+                           maliste.add(bbb);
+                           maliste.add(ccc);
+                        }
                         for(int numLigne=0;numLigne<tailleMap;numLigne++){
                             for(int numColonne=0;numColonne<tailleMap;numColonne++){
-                                char c=map_pleine[numLigne][numColonne];
+                                char lettre=map_pleine[numLigne][numColonne];
                                 //creation de la case
                                 Case nouvelleCase=null;
-                                switch(c){
-                                    case 'X':nouvelleCase=f.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
+                                switch(lettre){
+                                    case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
                                     break;
-                                    case '.':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
+                                    case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
                                     break;
-                                    case '0':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase));
+                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));
                                     break;
-                                    case '1':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase));
+                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase,null));
                                     break;
-                                    case '2':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase));
+                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase,null));
                                     break;
-                                    case '3':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase));
+                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase,null));
                                     break;
-                                    case '4':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase));
+                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase,null));
                                     break;
                                     default:System.out.println("Type case inconnue");
                                     break;
                                 }
                                 
                                 //gestion des entites
-                                
+                                Lanceur q=new Lanceur()
                                 
                                 //gestion du tour (IA)
                                 msg+=m.getListeJoueur().get(0).getAction();
