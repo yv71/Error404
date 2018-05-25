@@ -7,6 +7,7 @@ package ia_error404.Cases;
 
 import ia_error404.Coordonnees;
 import ia_error404.Map;
+import ia_error404.Objet.Fruit;
 import ia_error404.Team.Lanceur;
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public abstract class Case {
     private Coordonnees coord;
     public abstract Type_Case getType();
     public abstract boolean franchissable();
-   
+       private Fruit inventaire;
     public Case(Map m, int x, int y) {
         this.m = m;
         this.x = x;
@@ -33,13 +34,21 @@ public abstract class Case {
         this.joueur=null;
         this.coord = new Coordonnees(x,y);
         m.addCase(this);
+        m.addHashCase(coord, this);
+        this.inventaire = null;
     }
 
     public Coordonnees getCoord() {
         return this.coord;
     }
 
-    
+        public Fruit getInventaire(){
+        return this.inventaire;
+    }
+
+    public void setInventaire(Fruit inventaire) {
+        this.inventaire = inventaire;
+    }
      public void addLanceur(Lanceur joueur){
          if (this.joueur==null){
              this.joueur=joueur;

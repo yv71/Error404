@@ -44,6 +44,7 @@ public class IA_simple extends IA{
                         retour = "E";
                     }
                 }
+                this.algo.destroyFirst();
                 this.getJoueur().getCase().removeLanceur();
                 CaseSuivante.addLanceur(this.getJoueur());
                 
@@ -53,6 +54,7 @@ public class IA_simple extends IA{
     
     @Override
     public String action() {
+        System.out.println("testssss");
         String retour = "X";
         
         if (this.turn ==0){
@@ -61,7 +63,7 @@ public class IA_simple extends IA{
             }
         }
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
-        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
+        else if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
@@ -73,6 +75,7 @@ public class IA_simple extends IA{
         else {
             retour = noeudToAction(this.algo.getPath().get(0).getCase());
         }
+        System.out.println("---------------------" + retour);
         return retour;
     }
     
@@ -80,11 +83,11 @@ public class IA_simple extends IA{
         
 
         Fruit minFruit = this.getMap().getListeFruitsOK().get(0);
-        System.out.println("SALUUUUT");
         System.out.println(this.getMap().getGraphe().getHashMap().size());
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
-        for (Fruit f : this.getMap().getListeFruits()){
-            if (this.visited.get(f)!=true){
+        for (Fruit f : this.getMap().getListeFruitsOK()){
+            if (this.visited.get(f) !=null){
+            if (this.visited.get(f)==false){
             int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(f.getPosition()));
                 if (shortestF < shortest){
                      shortest = shortestF;
@@ -92,7 +95,7 @@ public class IA_simple extends IA{
                      this.visited.put(f, true);
                 }    
             }
-                
+            }
         }
         return minFruit;
     }

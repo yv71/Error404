@@ -140,6 +140,7 @@ public static void main(String[] args) {
 
 
                           }
+                           m.clean();
                         for(int numLigne=0;numLigne<tailleMap;numLigne++){
                             System.out.println("taille :" + tailleMap);
                             for(int numColonne=0;numColonne<tailleMap;numColonne++){
@@ -147,6 +148,7 @@ public static void main(String[] args) {
                                 char lettre=map_pleine[numLigne][numColonne];
                                 //creation de la case
                                 Case nouvelleCase=null;
+                                Coordonnees coord = new Coordonnees(numLigne, numColonne);
                                 switch(lettre){
                                     case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
                                     break;
@@ -165,19 +167,22 @@ public static void main(String[] args) {
                                     default:System.out.println("Type case inconnue");
                                     break;
                                 }
-                                m.addCase(nouvelleCase);
+                                
+                                switch(lettre){
+                                    case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
+                                    case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
+                                    case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));break;
+                                    case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
+                                    case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
+                                }
                                 
                             }
                         }
-                        
+                               
                                 m.genererGrapheSimple();
                                 m.setFruitsOK();
                                 m.getGraphe().afficheMatriceAdjacence();
-                                System.out.println(m.getListeFruitsOK());
-                                System.out.println(m.getListeFruits());
                                 //gestion des entites
-                                System.out.println(maliste.size());
-                                System.out.println(maliste.get(0));
                                 Coordonnees coordq = new Coordonnees(new Integer(maliste.get(0)).intValue(),new Integer(maliste.get(1)).intValue());
                                 Coordonnees coordl1 =new Coordonnees(new Integer(maliste.get(3)).intValue(),new Integer(maliste.get(4)).intValue());
                                 Coordonnees coordl2 = new Coordonnees(new Integer(maliste.get(6)).intValue(),new Integer(maliste.get(7)).intValue());
@@ -195,6 +200,8 @@ public static void main(String[] args) {
                                 msg+="-";
                                 msg+=m.getListeJoueur().get(2).getAction();
                                 msg+="\n";
+                                System.out.println("---------");
+                                System.out.println(msg);
                           
                     }
                     System.out.println("Serveur déconecté");

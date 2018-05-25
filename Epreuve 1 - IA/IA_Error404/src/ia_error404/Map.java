@@ -20,12 +20,12 @@ import java.util.HashMap;
  */
 public class Map {
     
-    private final ArrayList<Case> listeCase;
-    private final ArrayList<Fruit> listeFruits;
-    private final ArrayList<Fruit> listeFruitsOK;
-    private final ArrayList<Case_Base> listeBase;
-    private final ArrayList<Lanceur> listeJoueur;
-    private final HashMap<Coordonnees,Case> hashCase;
+    private ArrayList<Case> listeCase;
+    private  ArrayList<Fruit> listeFruits;
+    private ArrayList<Fruit> listeFruitsOK;
+    private  ArrayList<Case_Base> listeBase;
+    private  ArrayList<Lanceur> listeJoueur;
+    private  HashMap<Coordonnees,Case> hashCase;
 
     private Graphe graphe;
     
@@ -40,7 +40,15 @@ public class Map {
         this.listeJoueur = new ArrayList<Lanceur>();
         this.hashCase = new HashMap<>();
     }
-    
+    public void clean(){
+        this.graphe = new Graphe();
+        this.listeCase = new ArrayList<Case>();
+        this.listeFruits = new ArrayList<Fruit>();
+        this.listeFruitsOK = new ArrayList<Fruit>();
+ 
+        this.listeJoueur = new ArrayList<Lanceur>();
+        this.hashCase = new HashMap<>();
+    }
     public HashMap<Coordonnees,Case> getHash(){
         return this.hashCase;
     }
@@ -143,6 +151,10 @@ public class Map {
 
     public HashMap<Coordonnees, Case> getHashCase() {
         return hashCase;
+    }
+    
+    public void addHashCase(Coordonnees c, Case cc){
+        this.hashCase.put(c,cc);
     }
     
     

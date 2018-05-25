@@ -61,7 +61,6 @@ public class Dijkstra {
     }
             
     public int getShortest(Vertex _debug, Vertex _fin){
-        System.out.println(_fin);
         this.debut = _debug;
         this.fin = _fin;
         this.initialisation();
@@ -78,7 +77,6 @@ public class Dijkstra {
             v = predecessor.get(v);
             //System.out.println(v);
         }
-        System.out.println(path);
         path.remove(0);
         
         return this.path.size();

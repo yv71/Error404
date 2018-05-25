@@ -13,11 +13,10 @@ import ia_error404.Objet.Fruit;
  * @author Beelzed
  */
 public class Case_Sol extends Case{
-    private Fruit inventaire;
+
 
     public Case_Sol(Map m, int x, int y) {
         super(m, x, y);
-        this.inventaire=null;
     }
 
     @Override
@@ -30,11 +29,5 @@ public class Case_Sol extends Case{
         return true;
     }
     
-    public Fruit getInventaire(){
-        return this.inventaire;
-    }
 
-    public void setInventaire(Fruit inventaire) {
-        this.inventaire = inventaire;
-    }
 }
