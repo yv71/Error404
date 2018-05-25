@@ -6,6 +6,7 @@
 package ia_error404.IA;
 
 import ia_error404.Cases.Case;
+import ia_error404.Objet.Fruit;
 import ia_error404.Team.Lanceur;
 
 /**
@@ -33,17 +34,31 @@ public class IA_simple extends IA{
     public String action() {
         String retour = "X";
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
+        if (this.turn ==0){
+            this.algo.calcul(_debug, _fin);
+        }
         if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             
         }
         // Action lorsque le joueur vient de ramasser son fruit;
         else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()!=null){
             
-        }
+        } 
         else {
             retour = noeudToAction(this.algo.getPath().get(0).getCase());
         }
         return retour;
+    }
+    
+    public Fruit minFruit(){
+        
+
+        Fruit minFruit = this.getMap().getListeFruits().get(0);
+        int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
+        for (Fruit f : ){
+            
+        }
+        return minFruit;
     }
     
 }

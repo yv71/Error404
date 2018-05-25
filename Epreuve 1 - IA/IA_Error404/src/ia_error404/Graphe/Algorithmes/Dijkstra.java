@@ -32,7 +32,8 @@ public class Dijkstra {
     this.predecessor = new HashMap<Vertex,Vertex>();
     this.path = new ArrayList<Vertex>();
     this.infini = null;
-        System.out.println(path.isEmpty());
+    this.debut = null;
+    this.fin = null;
     }
     
     public void initialisation(){
@@ -59,12 +60,30 @@ public class Dijkstra {
         return plusProche;
     }
             
-            
+    public int getShortest(Vertex _debug, Vertex _fin){
+        this.debut = _debug;
+        this.fin = _fin;
+        this.initialisation();
+        for (int i = 0; i< visited.size(); i++){
+            Vertex a = closestVertex();
+            visited.put(a,true);
+            for (Vertex b : visited.keySet()){
+                relaxing(a,b);
+            }
+        }
+        Vertex v = fin;
+        while (v !=null){
+            path.add(0,v);
+            v = predecessor.get(v);
+        }
+        path.remove(0);
+        return this.path.size();
+ 
+    }      
+    
     public void calcul(Vertex _debug, Vertex _fin){
         this.debut = _debug;
         this.fin = _fin;
-        debut = _debug;
-        fin = _fin;
         this.initialisation();
         for (int i = 0; i< visited.size(); i++){
             Vertex a = closestVertex();
