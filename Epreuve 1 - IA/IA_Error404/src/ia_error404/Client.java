@@ -6,6 +6,7 @@
 package ia_error404;
 
 import ia_error404.Cases.Case;
+import ia_error404.Cases.Case_Sol;
 import ia_error404.Cases.Type_Case;
 import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
@@ -16,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -138,7 +140,9 @@ public static void main(String[] args) {
                                 }
                                 
                                 //gestion des entites
-                                Lanceur q=new Lanceur()
+                                Lanceur q=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(0)),Integer.parseInt(maliste.get(1))))), m, maliste.get(2));
+                                Lanceur l1=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(3)),Integer.parseInt(maliste.get(4))))), m, maliste.get(5));
+                                Lanceur l2=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(6)),Integer.parseInt(maliste.get(7))))), m, maliste.get(8));
                                 
                                 //gestion du tour (IA)
                                 msg+=m.getListeJoueur().get(0).getAction();
