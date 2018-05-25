@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication5;
+package ia_error404;
 
 /**
  *
  * @author Beelzed
  */
-public class JavaApplication5 {
+public class IA_Error404 {
 
     /**
      * @param args the command line arguments
