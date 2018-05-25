@@ -9,6 +9,7 @@ import ia_error404.Cases.Case;
 import ia_error404.Graphe.Graphe;
 import ia_error404.Objet.Fruit;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Map {
     
-    
+    private final HashMap<Coordonnees, Case> hashMapCases;
     private final ArrayList<Case> listeCase;
     private final ArrayList<Fruit> listeFruits;
     
@@ -28,6 +29,7 @@ public class Map {
         this.graphe = new Graphe();
         this.listeCase = new ArrayList<Case>();
         this.listeFruits = new ArrayList<Fruit>();
+        this.hashMapCases = new HashMap<Coordonees,Case>();
     }
     
     private void genererGrapheSimple(){
@@ -65,4 +67,26 @@ public class Map {
            
         }
 
+    
+    // --- Getter / Setter ---
+
+    public Graphe getGraphe() {
+        return graphe;
+    }
+
+    public void setGraphe(Graphe graphe) {
+        this.graphe = graphe;
+    }
+    
+    public ArrayList<Case> getListeCase(){
+        return this.listeCase;
+    }
+    
+    public ArrayList<Fruit> getListeFruits(){
+        return this.listeFruits;
+    }
+
+    }
+    
+   
 }

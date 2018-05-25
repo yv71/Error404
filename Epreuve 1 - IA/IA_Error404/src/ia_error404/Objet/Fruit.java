@@ -6,7 +6,7 @@
 package ia_error404.Objet;
 
 import ia_error404.Cases.Case;
-
+import ia_error404.Team.Lanceur;
 /**
  *
  * @author JGSTAR

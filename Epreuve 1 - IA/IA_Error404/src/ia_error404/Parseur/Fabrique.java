@@ -8,6 +8,7 @@ package ia_error404.Parseur;
 import ia_error404.Cases.*;
 import ia_error404.Map;
 import ia_error404.Objet.Fruit;
+import ia_error404.Team.Equipe;
 
 /**
  *
@@ -35,7 +36,7 @@ public class Fabrique {
                 break;
             case Mur: nouvelleCase = new Case_Mur(map,X,Y);
                 break;
-            case Base: nouvelleCase = new Case_Base(map,X,Y,e);
+            case Base: nouvelleCase = new Case_Base(e,map,X,Y);
                 break;
         }
         return nouvelleCase;
