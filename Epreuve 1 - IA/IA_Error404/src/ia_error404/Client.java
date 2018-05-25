@@ -118,6 +118,11 @@ public static void main(String[] args) {
                                     break;
                                 }
                                 
+                                //gestion des entites
+                                
+                                
+                                //gestion du tour (IA)
+                                
                             }
                         }
                     }
