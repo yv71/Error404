@@ -61,10 +61,11 @@ public class Dijkstra {
     }
             
     public int getShortest(Vertex _debug, Vertex _fin){
+        System.out.println(_fin);
         this.debut = _debug;
         this.fin = _fin;
         this.initialisation();
-        for (int i = 0; i< visited.size(); i++){
+        for (int i = 0; i< visited.keySet().size(); i++){
             Vertex a = closestVertex();
             visited.put(a,true);
             for (Vertex b : visited.keySet()){
@@ -72,12 +73,14 @@ public class Dijkstra {
             }
         }
         Vertex v = fin;
-        while (v !=null){
+        while (v !=null){ 
             path.add(0,v);
             v = predecessor.get(v);
+            //System.out.println(v);
         }
         System.out.println(path);
         path.remove(0);
+        
         return this.path.size();
  
     }      
@@ -110,6 +113,7 @@ public class Dijkstra {
             if (distance.get(b)> (distance.get(a)+ this.graph.getLabels().get(new VertexCouple(a,b)))){
                 distance.put(b, (distance.get(a)+ this.graph.getLabels().get(new VertexCouple(a,b))));
                 predecessor.put(b, a);
+
             }
         }
     }

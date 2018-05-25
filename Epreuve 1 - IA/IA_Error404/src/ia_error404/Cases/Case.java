@@ -32,6 +32,7 @@ public abstract class Case {
         this.y = y;
         this.joueur=null;
         this.coord = new Coordonnees(x,y);
+        m.addCase(this);
     }
 
     public Coordonnees getCoord() {

@@ -80,6 +80,8 @@ public class IA_simple extends IA{
         
 
         Fruit minFruit = this.getMap().getListeFruitsOK().get(0);
+        System.out.println("SALUUUUT");
+        System.out.println(this.getMap().getGraphe().getHashMap().size());
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minFruit.getPosition()));
         for (Fruit f : this.getMap().getListeFruits()){
             if (this.visited.get(f)!=true){

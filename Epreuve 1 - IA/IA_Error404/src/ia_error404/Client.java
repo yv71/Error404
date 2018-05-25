@@ -169,6 +169,7 @@ public static void main(String[] args) {
                         }
                                 m.genererGrapheSimple();
                                 m.setFruitsOK();
+                                m.getGraphe().afficheMatriceAdjacence();
                                 System.out.println(m.getListeFruitsOK());
                                 System.out.println(m.getListeFruits());
                                 //gestion des entites

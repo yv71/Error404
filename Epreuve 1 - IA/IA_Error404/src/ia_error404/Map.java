@@ -47,6 +47,7 @@ public class Map {
     
     public void genererGrapheSimple(){
         // generation des vertices
+        System.out.println("SALUT");
         for(Case c : listeCase) {
             this.graphe.addVertex(c);
         }
@@ -62,8 +63,8 @@ public class Map {
                     // ajout des labels
                     if ((ligne + col)==1){
                     switch(c2.getType()){
-                        case Mur : this.graphe.addEdge(c,c2);
-                        this.graphe.setLabel(c,c2,2);
+                        case Base : this.graphe.addEdge(c, c2);
+                        this.graphe.setLabel(c, c2, 1);
                         break;
                         case Sol : this.graphe.addEdge(c, c2);
                         this.graphe.setLabel(c, c2, 1);
