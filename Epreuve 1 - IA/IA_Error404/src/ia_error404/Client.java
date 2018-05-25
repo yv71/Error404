@@ -160,6 +160,16 @@ public static void main(String[] args) {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Thread envoyer = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while(true){
+                        out.println(msg);
+                        out.flush();
+                    }
+            }
+        });
+        envoyer.start();
             }
         });
         recevoir.start();
