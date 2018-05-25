@@ -5,6 +5,10 @@
  */
 package ia_error404;
 
+import ia_error404.Cases.Case;
+import ia_error404.Cases.Type_Case;
+import ia_error404.Parseur.Fabrique;
+import ia_error404.Team.Equipe;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -83,7 +87,29 @@ public static void main(String[] args) {
                                 map_pleine[k][i] = temp12[k+1].charAt(i);
                             }
                         }
-                        
+                        Map m=new Map();
+                        Equipe monEquipe=new Equipe("Error 404", numero_equipe);
+                        Equipe equipeAdv=new Equipe("Autres", "4");
+                        for(int numLigne=0;numLigne<tailleMap;numLigne++){
+                            for(int numColonne=0;numColonne<tailleMap;numColonne++){
+                                char c=map_pleine[numLigne][numColonne];
+                                //creation de la case
+                                Case nouvelleCase=null;
+                                switch(c){
+                                    case 'X':nouvelleCase=Fabrique.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
+                                    break;
+                                    case '.':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
+                                    break;
+                                    case 'A':nouvelleCase=Fabrique.construireCase(Type_Case.Base, numLigne, numColonne, m, monEquipe, null);
+                                    break;
+                                    case 'E':nouvelleCase=Fabrique.construireCase(Type_Case.Base, numLigne, numColonne, m, equipeAdv, null);
+                                    break;
+                                    default:System.out.println("Type case inconnue");
+                                    break;
+                                }
+                                
+                            }
+                        }
                     }
                     System.out.println("Serveur déconecté");
                     out.close();
