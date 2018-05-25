@@ -148,24 +148,24 @@ public static void main(String[] args) {
                                 //creation de la case
                                 Case nouvelleCase=null;
                                 switch(lettre){
-                                    case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
+                                    case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
                                     break;
-                                    case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
+                                    case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
-                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase,null,m));
+                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
-                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase,null,m));
+                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
-                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase,null,m));
+                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
-                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase,null,m));
+                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
-                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase,null,m));
+                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                                     break;
                                     default:System.out.println("Type case inconnue");
                                     break;
                                 }
-                                  }
+                            }
                         }
                                 m.genererGrapheSimple();
                                 m.setFruitsOK();
