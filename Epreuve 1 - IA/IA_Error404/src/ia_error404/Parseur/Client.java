@@ -20,108 +20,83 @@ public class Client {
     private static int tailleMap;
     private static char[][] map_pleine;
     
-   public static void main(String[] args) {
+public static void main(String[] args) {
       
-      final Socket clientSocket;
-      final BufferedReader in;
-      final PrintWriter out;
-      
-     
-  
-      try {
-        
-         clientSocket = new Socket("100.64.87.25",1337);
-   
-         //flux pour envoyer
-         out = new PrintWriter(clientSocket.getOutputStream());
-         //flux pour recevoir
-         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-   
-         Thread envoyer = new Thread(new Runnable() {
-             String msg;
-              @Override
-              public void run() {
+    final Socket clientSocket;
+    final BufferedReader in;
+    final PrintWriter out;
+
+
+
+    try {
+
+        clientSocket = new Socket("100.64.87.25",1337);
+
+        //flux pour envoyer
+        out = new PrintWriter(clientSocket.getOutputStream());
+        //flux pour recevoir
+        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        Thread envoyer = new Thread(new Runnable() {
+            String msg;
+            @Override
+            public void run() {
                 while(true){
-                  msg = "Error 404 not found\n";
-                  out.println(msg);
-                  out.flush();
+                    msg = "Error 404 not found\n";
+                    out.println(msg);
+                    out.flush();
                 }
-             }
-         });
-         envoyer.start();
-   
+            }
+        });
+        envoyer.start();
+
         Thread recevoir = new Thread(new Runnable() {
             String msg;
             @Override
             public void run() {
-               try {
-                 msg = in.readLine();
-                 while(msg!=null){
-                    //System.out.println("valeur-basique "+msg);
-                    
-                    //Recuperation du numero de team 
-                    numero_equipe=msg.substring(0,1);
-                    System.out.println("Numero d'équipe" +numero_equipe );
-                     
-                   
-                    
+                try {
                     msg = in.readLine();
-                    //Taille de la map 
-                    String temp[] = msg.split("_");
-                     
-                    String[] blocTailleMap = temp[2].split(":");
-                    tailleMap = Integer.parseInt(blocTailleMap[0]);
-                   
-                    System.out.println("Taille map " +tailleMap);
-                    String[] bloc_map = msg.split(",");
-                    String map [][] =new String[tailleMap][tailleMap] ;
-                    
-                    String temp10[] = msg.split("_");
-                    String temp12[] = temp10[2].split(",");
-                    
-                     
-                         for (int j = 1; j < tailleMap+1; j++) {
-                              System.out.println(temp12[j]);
-                         }
-                         
-                         map_pleine=new char[tailleMap][tailleMap];
-                         for (int k = 0; k < tailleMap; k++) {
-                         
-                         for (int i = 0; i < tailleMap; i++) {
-                                
+                    while(msg!=null){
+                        //System.out.println("valeur-basique "+msg);
+
+                        //Recuperation du numero de team 
+                        numero_equipe=msg.substring(0,1);
+                        System.out.println("Numero d'équipe" +numero_equipe );
+
+                        msg = in.readLine();
+                        //Taille de la map 
+                        String temp[] = msg.split("_");
+
+                        String[] blocTailleMap = temp[2].split(":");
+                        tailleMap = Integer.parseInt(blocTailleMap[0]);
+
+                        System.out.println("Taille map " +tailleMap);
+                        String[] bloc_map = msg.split(",");
+                        String map [][] =new String[tailleMap][tailleMap] ;
+
+                        String temp10[] = msg.split("_");
+                        String temp12[] = temp10[2].split(",");
+
+                        map_pleine=new char[tailleMap][tailleMap];
+                        for (int k = 0; k < tailleMap; k++) {
+                            for (int i = 0; i < tailleMap; i++) {
                                 map_pleine[k][i] = temp12[k+1].charAt(i);
-                                
-                             }
-                         }
-                            
-                         
-                       
-                     
-                   
-                         
-                     
-                     
-                    
-               
-                     
-                     
-                   
-                             
+                            }
+                        }
                         
-                    
-                 }
-                 System.out.println("Serveur déconecté");
-                 out.close();
-                 clientSocket.close();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
+                    }
+                    System.out.println("Serveur déconecté");
+                    out.close();
+                    clientSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         recevoir.start();
-   
-      } catch (IOException e) {
-           e.printStackTrace();
-      }
-  }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
