@@ -12,13 +12,12 @@ package ia_error404.Team;
 public class Equipe {
     
     private String nom;
-    private int id;
-    private int score;
+    private String id;
+    //private int score;
 
-    public Equipe(String nom, int id, int score) {
+    public Equipe(String nom, String id) {
         this.nom = nom;
         this.id = id;
-        this.score = score;
     }
 
     public String getNom() {
@@ -29,14 +28,14 @@ public class Equipe {
         this.nom = nom;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
-
+/*
     public int getScore() {
         return score;
     }
@@ -44,5 +43,5 @@ public class Equipe {
     public void setScore(int score) {
         this.score = score;
     }
-    
+  */  
 }
