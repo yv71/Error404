@@ -24,5 +24,17 @@ public abstract class Case {
     
     public abstract Type_Case getType();
     public abstract boolean franchissable();
+
+    public Map getM() {
+        return m;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
     
 }
