@@ -12,7 +12,6 @@ import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
 import ia_error404.Team.Lanceur;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
