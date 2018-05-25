@@ -5,10 +5,26 @@
  */
 package ia_error404;
 
+import ia_error404.Cases.Case;
+import ia_error404.Graphe.Graphe;
+import java.util.ArrayList;
+
 /**
  *
  * @author Beelzed
  */
 public class Map {
     
+    
+    private final ArrayList<Case> listeCase;
+    private final ArrayList<Fruit> listeFruits;
+    
+    private Graphe graphe;
+    
+    public Map(){
+        this.graphe = new Graphe();
+        this.listeCase = new ArrayList<Case>();
+        this.listeFruits = new ArrayList<Fruit>();
+    }
+
 }

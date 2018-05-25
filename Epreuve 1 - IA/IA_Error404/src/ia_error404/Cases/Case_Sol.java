@@ -30,4 +30,7 @@ public class Case_Sol extends Case{
         return true;
     }
     
+    public Fruit getInventaire(){
+        return this.inventaire;
+    }
 }
