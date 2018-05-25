@@ -70,4 +70,8 @@ public class Lanceur {
     public Fruit getInventaire(){
         return this.inventaire;
     }
+    
+    public String getAction(){
+        return this.ia.action();
+    }
 }
