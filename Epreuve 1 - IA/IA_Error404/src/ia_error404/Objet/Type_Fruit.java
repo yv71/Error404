@@ -9,6 +9,6 @@ package ia_error404.Objet;
  *
  * @author JGSTAR
  */
-enum Type_Fruit {
+public enum Type_Fruit {
     mirabelle, prune, cerise, framboise, chataigne;
 }
