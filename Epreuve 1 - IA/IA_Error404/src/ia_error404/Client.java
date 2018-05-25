@@ -11,6 +11,7 @@ import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
 import ia_error404.Parseur.Fabrique;
 import ia_error404.Team.Equipe;
+import ia_error404.Team.Lanceur;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,6 +32,7 @@ public static void main(String[] args) {
     final Socket clientSocket;
     final BufferedReader in;
     final PrintWriter out;
+    Fabrique f=Fabrique.get();
     Map m=new Map();
     Equipe monEquipe=new Equipe("Error 404", numero_equipe);
     Equipe equipeAdv=new Equipe("Autres", "4");
@@ -100,19 +102,19 @@ public static void main(String[] args) {
                                 //creation de la case
                                 Case nouvelleCase=null;
                                 switch(c){
-                                    case 'X':nouvelleCase=Fabrique.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
+                                    case 'X':nouvelleCase=f.construireCase(Type_Case.Mur, numLigne, numColonne, m, null, null);
                                     break;
-                                    case '.':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
+                                    case '.':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, null);
                                     break;
-                                    case '0':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase));
+                                    case '0':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.mirabelle,nouvelleCase));
                                     break;
-                                    case '1':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase));
+                                    case '1':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.prune,nouvelleCase));
                                     break;
-                                    case '2':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase));
+                                    case '2':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.cerise,nouvelleCase));
                                     break;
-                                    case '3':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase));
+                                    case '3':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.framboise,nouvelleCase));
                                     break;
-                                    case '4':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase));
+                                    case '4':nouvelleCase=f.construireCase(Type_Case.Sol, numLigne, numColonne, m, null, new Fruit(Type_Fruit.chataigne,nouvelleCase));
                                     break;
                                     default:System.out.println("Type case inconnue");
                                     break;
@@ -122,7 +124,12 @@ public static void main(String[] args) {
                                 
                                 
                                 //gestion du tour (IA)
-                                
+                                msg+=m.getListeJoueur().get(0).getAction();
+                                msg+="-";
+                                msg+=m.getListeJoueur().get(1).getAction();
+                                msg+="-";
+                                msg+=m.getListeJoueur().get(2).getAction();
+                                msg+="\n";
                             }
                         }
                     }
