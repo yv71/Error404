@@ -10,5 +10,5 @@ package ia_error404.Cases;
  * @author Beelzed
  */
 public enum Type_Case {
-    Sol, Mur;
+    Sol, Mur, Base;
 }
