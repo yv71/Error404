@@ -41,12 +41,12 @@ public class IA_simple extends IA{
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
         if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             retour = "P";
-            
+            this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
         // Action lorsque le joueur vient de ramasser son fruit;
         else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()!=null){
             retour = "P";
-            
+            this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.baseProche()));
         } 
         else {
             retour = noeudToAction(this.algo.getPath().get(0).getCase());
@@ -69,8 +69,17 @@ public class IA_simple extends IA{
         return minFruit;
     }
     
-    public Case_Base caseProche(){
-        
+    public Case_Base baseProche(){
+        Case_Base minBase = this.getMap().getBase().get(0);
+        int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minBase));
+        for (Case_Base c : this.getMap().getBase()){
+            int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(c));
+            if (shortestF<shortest){
+                shortest = shortestF;
+                minBase =c;
+            }
+        }
+        return minBase;
     }
     
 }
