@@ -27,7 +27,27 @@ public class IA_simple extends IA{
         int Y = cC.getY();
         int suivX = CaseSuivante.getX();
         int suivY = CaseSuivante.getY();
-        
+        if (CaseSuivante.getJoueur() == null){
+            if (X!=suivX){
+                    if (suivX == X-1){
+                        retour = "N";
+                    }
+                    if (suivX == X+1){
+                        retour = "S";
+                    }
+                }
+                if (Y!=suivY){
+                    if (suivY == Y-1){
+                        retour = "O";
+                    }
+                    if (suivY == Y+1){
+                        retour = "E";
+                    }
+                }
+                this.getJoueur().getCase().removeLanceur();
+                CaseSuivante.addLanceur(this.getJoueur());
+                
+        }
         return retour;
     }
     

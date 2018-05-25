@@ -10,6 +10,7 @@ import ia_error404.Cases.Case_Base;
 import ia_error404.Graphe.Graphe;
 import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
+import ia_error404.Team.Lanceur;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,6 +24,7 @@ public class Map {
     private final ArrayList<Fruit> listeFruits;
     private final ArrayList<Fruit> listeFruitsOK;
     private final ArrayList<Case_Base> listeBase;
+    private final ArrayList<Lanceur> listeJoueur;
     
     private Graphe graphe;
     
@@ -34,6 +36,7 @@ public class Map {
         this.listeFruits = new ArrayList<Fruit>();
         this.listeFruitsOK = new ArrayList<Fruit>();
         this.listeBase = new ArrayList<Case_Base>();
+        this.listeJoueur = new ArrayList<Lanceur>();
         
     }
     
