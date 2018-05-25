@@ -125,4 +125,8 @@ public class Map {
         return listeJoueur;
     }
     
+    public void addJoueur(Lanceur e){
+        this.listeJoueur.add(e);
+    }
+    
 }

@@ -44,7 +44,7 @@ public static void main(String[] args) {
 
     try {
 
-        clientSocket = new Socket("100.64.87.25",1337);
+        clientSocket = new Socket("100.64.87.0",1337);
 
         //flux pour envoyer
         out = new PrintWriter(clientSocket.getOutputStream());
@@ -97,24 +97,49 @@ public static void main(String[] args) {
                                 map_pleine[k][i] = temp12[k+1].charAt(i);
                             }
                         }
-                        ArrayList<String> maliste=null;
-                        String[] parseurTeam = msg.split(",");
-                        for (int i = 0; i < 4; i++) 
-                        {
-                           String a = parseurTeam[2+i*16+tailleMap];
-                           String b = parseurTeam[3+i*16+tailleMap];
-                           String c = parseurTeam[4+i*16+tailleMap];
-                           String[] aa = a.split(":");
-                           String[] bb = b.split(":");
-                           String[] cc = c.split(":");
-                           String aaa = aa[1];
-                           String bbb = bb[2];
-                           String ccc =  cc[3];
+                            ArrayList<String> maliste= new ArrayList();
+                      String[] parseurTeam = msg.split(",");
 
-                           maliste.add(aaa);
-                           maliste.add(bbb);
-                           maliste.add(ccc);
-                        }
+
+                          for (int i = 0; i < 4; i++) 
+                          {
+                             String a = parseurTeam[2+i*16+tailleMap];
+                             String b = parseurTeam[3+i*16+tailleMap];
+                             String c = parseurTeam[4+i*16+tailleMap];
+
+                             String[] aa = a.split(":");
+                             String[] bb = b.split(":");
+                             String[] cc = c.split(":");
+
+                             String aaa = aa[1];
+                             String bbb = aa[2];
+                             String ccc =  aa[3];
+
+                             String ddd = bb[1];
+                             String eee = bb[2];
+                             String fff =  bb[3];
+
+                             String ggg = cc[1];
+                             String hhh = cc[2];
+                             String iii = cc[3];
+
+
+
+
+                             maliste.add(aaa);
+                             maliste.add(bbb);
+                             maliste.add(ccc);
+
+                             maliste.add(ddd);
+                             maliste.add(eee);
+                             maliste.add(fff);
+
+                             maliste.add(ggg);
+                             maliste.add(hhh);
+                             maliste.add(iii);
+
+
+                          }
                         for(int numLigne=0;numLigne<tailleMap;numLigne++){
                             for(int numColonne=0;numColonne<tailleMap;numColonne++){
                                 char lettre=map_pleine[numLigne][numColonne];
@@ -140,11 +165,15 @@ public static void main(String[] args) {
                                 }
                                 
                                 //gestion des entites
+                                System.out.println(maliste.size());
                                 Lanceur q=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(0)),Integer.parseInt(maliste.get(1))))), m, maliste.get(2));
                                 Lanceur l1=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(3)),Integer.parseInt(maliste.get(4))))), m, maliste.get(5));
                                 Lanceur l2=new Lanceur(m.getListeCase().get(m.getListeCase().indexOf(new Case_Sol(null,null,Integer.parseInt(maliste.get(6)),Integer.parseInt(maliste.get(7))))), m, maliste.get(8));
-                                
+                                m.addJoueur(q);
+                                m.addJoueur(l1);
+                                m.addJoueur(l2);
                                 //gestion du tour (IA)
+                                System.out.println(m.getListeJoueur().size());
                                 msg+=m.getListeJoueur().get(0).getAction();
                                 msg+="-";
                                 msg+=m.getListeJoueur().get(1).getAction();
