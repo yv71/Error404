@@ -5,10 +5,16 @@
  */
 package ia_error404.IA;
 
+import ia_error404.Team.Lanceur;
+
 /**
  *
  * @author JGSTAR
  */
-public class IA_Lanceur {
+public class IA_Lanceur extends IA {
+    
+    public IA_Lanceur(Lanceur _joueur) {
+        super(_joueur);
+    }
     
 }
