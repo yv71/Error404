@@ -25,7 +25,7 @@ public class Map {
     private final ArrayList<Fruit> listeFruitsOK;
     private final ArrayList<Case_Base> listeBase;
     private final ArrayList<Lanceur> listeJoueur;
-    
+
     private Graphe graphe;
     
     // ----- Constructeurs ------
@@ -117,4 +117,13 @@ public class Map {
     public ArrayList<Case_Base> getBase(){
         return this.listeBase;
     }
+
+    public ArrayList<Case_Base> getListeBase() {
+        return listeBase;
+    }
+
+    public ArrayList<Lanceur> getListeJoueur() {
+        return listeJoueur;
+    }
+    
 }
