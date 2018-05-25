@@ -165,8 +165,11 @@ public static void main(String[] args) {
                                     default:System.out.println("Type case inconnue");
                                     break;
                                 }
+                                m.addCase(nouvelleCase);
+                                
                             }
                         }
+                        
                                 m.genererGrapheSimple();
                                 m.setFruitsOK();
                                 m.getGraphe().afficheMatriceAdjacence();
