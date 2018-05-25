@@ -19,7 +19,13 @@ public class Case_Base extends Case{
         this.e = e;
     }
 
-    
+    public Equipe getE() {
+        return e;
+    }
+
+    public void setE(Equipe e) {
+        this.e = e;
+    }
 
     @Override
     public Type_Case getType() {
