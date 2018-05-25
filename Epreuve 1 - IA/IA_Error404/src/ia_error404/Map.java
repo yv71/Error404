@@ -7,6 +7,7 @@ package ia_error404;
 
 import ia_error404.Cases.Case;
 import ia_error404.Graphe.Graphe;
+import ia_error404.Objet.Fruit;
 import java.util.ArrayList;
 
 /**
