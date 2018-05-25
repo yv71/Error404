@@ -7,6 +7,8 @@ package ia_error404.Team;
 
 import ia_error404.Cases.Case;
 import ia_error404.Cases.Case_Sol;
+import ia_error404.IA.IA;
+import ia_error404.IA.IA_simple;
 import ia_error404.Map;
 import ia_error404.Objet.Fruit;
 
@@ -21,13 +23,16 @@ public class Lanceur {
     private Equipe eq;
     private TypeJoueur type;
     private Map map;
-    //private IA ia;
+    private IA ia;
   
     public Lanceur(Case cas, Map map){
         inventaire = null;
         position = cas;
         this.map = map;
+        this.ia = new IA_simple(this);
+        
 }
+    
     public Map getMap(){
         return this.getMap();
     }
