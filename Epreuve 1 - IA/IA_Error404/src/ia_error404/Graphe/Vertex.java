@@ -36,7 +36,7 @@ public class Vertex {
     }
     
     public String toString(){
-        return "x : " + c.getLigne() + " y : " + c.getColonne();
+        return "x : " + c.getX() + " y : " + c.getY();
     }
 
     
