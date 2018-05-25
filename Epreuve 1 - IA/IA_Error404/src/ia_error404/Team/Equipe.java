@@ -13,12 +13,11 @@ public class Equipe {
     
     private String nom;
     private int id;
-    private int score;
+    //private int score;
 
-    public Equipe(String nom, int id, int score) {
+    public Equipe(String nom, int id) {
         this.nom = nom;
         this.id = id;
-        this.score = score;
     }
 
     public String getNom() {
@@ -36,7 +35,7 @@ public class Equipe {
     public void setId(int id) {
         this.id = id;
     }
-
+/*
     public int getScore() {
         return score;
     }
@@ -44,5 +43,5 @@ public class Equipe {
     public void setScore(int score) {
         this.score = score;
     }
-    
+  */  
 }
