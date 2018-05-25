@@ -29,14 +29,14 @@ public class Fabrique {
         return instance;
     }
     
-    public static Case construireCase(Type_Case type,int X,int Y,Map map,Equipe e, Fruit f) {
+    public static Case construireCase(Type_Case type,int X,int Y,Map map) {
         Case nouvelleCase = null;
         switch(type) {
-            case Sol: nouvelleCase = new Case_Sol(f,map,X,Y);
+            case Sol: nouvelleCase = new Case_Sol(map,X,Y);
                 break;
             case Mur: nouvelleCase = new Case_Mur(map,X,Y);
                 break;
-            case Base: nouvelleCase = new Case_Base(e,map,X,Y);
+            case Base: nouvelleCase = new Case_Base(map,X,Y);
                 break;
         }
         return nouvelleCase;

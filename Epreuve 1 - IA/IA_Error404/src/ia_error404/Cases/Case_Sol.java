@@ -15,9 +15,9 @@ import ia_error404.Objet.Fruit;
 public class Case_Sol extends Case{
     private Fruit inventaire;
 
-    public Case_Sol(Fruit inventaire, Map m, int x, int y) {
+    public Case_Sol(Map m, int x, int y) {
         super(m, x, y);
-        this.inventaire=inventaire;
+        this.inventaire=null;
     }
 
     @Override

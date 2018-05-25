@@ -28,11 +28,11 @@ public class Lanceur {
   
     public Lanceur(Case cas, Map map,String fruit){
         switch(fruit){
-            case"0":this.inventaire=new Fruit(Type_Fruit.mirabelle,null,this,map);break;
-            case"1":this.inventaire=new Fruit(Type_Fruit.prune,null,this,map);break;
-            case"2":this.inventaire=new Fruit(Type_Fruit.cerise,null,this,map);break;
-            case"3":this.inventaire=new Fruit(Type_Fruit.framboise,null,this,map);break;
-            case"4":this.inventaire=new Fruit(Type_Fruit.chataigne,null,this,map);break;
+            case"0":this.inventaire=new Fruit(Type_Fruit.mirabelle,null,this);break;
+            case"1":this.inventaire=new Fruit(Type_Fruit.prune,null,this);break;
+            case"2":this.inventaire=new Fruit(Type_Fruit.cerise,null,this);break;
+            case"3":this.inventaire=new Fruit(Type_Fruit.framboise,null,this);break;
+            case"4":this.inventaire=new Fruit(Type_Fruit.chataigne,null,this);break;
             default : this.inventaire = null;
         }
         position = cas;

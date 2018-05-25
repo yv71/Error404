@@ -16,14 +16,12 @@ public class Fruit {
     private Type_Fruit type;
     private Case position;
     private Lanceur joueur;
-    private Map m;
 
-    public Fruit(Type_Fruit type, Case position, Lanceur j, Map m) {
+    public Fruit(Type_Fruit type, Case position, Lanceur j) {
         this.type = type;
         this.position = position;
         this.joueur = j;
-        this.m = m;
-        m.addFruit(this);
+        position.getM().addFruit(this);
         
     }
 

@@ -15,9 +15,9 @@ import ia_error404.Team.Equipe;
 public class Case_Base extends Case{
     private Equipe e;
 
-    public Case_Base(Equipe e, Map m, int x, int y) {
+    public Case_Base(Map m, int x, int y) {
         super(m, x, y);
-        this.e = e;
+        this.e =null;
     }
 
     public Equipe getE() {
