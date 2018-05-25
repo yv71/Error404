@@ -17,7 +17,6 @@ import java.util.HashMap;
  */
 public class Map {
     
-    private final HashMap<Coordonnees, Case> hashMapCases;
     private final ArrayList<Case> listeCase;
     private final ArrayList<Fruit> listeFruits;
     
@@ -29,7 +28,6 @@ public class Map {
         this.graphe = new Graphe();
         this.listeCase = new ArrayList<Case>();
         this.listeFruits = new ArrayList<Fruit>();
-        this.hashMapCases = new HashMap<Coordonees,Case>();
     }
     
     private void genererGrapheSimple(){
@@ -86,7 +84,7 @@ public class Map {
         return this.listeFruits;
     }
 
-    }
+    
     
    
 }
