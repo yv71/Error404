@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cryptofthejavadancer.Model.Carte.Graphes;
+package ia_error404.Graphe;
 
 import java.util.Objects;
 

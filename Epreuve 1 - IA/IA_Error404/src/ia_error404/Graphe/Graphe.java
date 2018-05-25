@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cryptofthejavadancer.Model.Carte.Graphes;
+package ia_error404.Graphe;
 
-import cryptofthejavadancer.Model.Carte.Cases.Case;
+import ia_error404.Cases.Case;
 import java.util.HashMap;
-import cryptofthejavadancer.Model.Carte.Graphes.Vertex;
+
 import java.util.ArrayList;
 /**
  *
