@@ -15,4 +15,35 @@ public class Fruit {
     private Type_Fruit type;
     private Case position;
     private Lanceur joueur;
+
+    public Fruit(Type_Fruit type, Case position, Lanceur joueur) {
+        this.type = type;
+        this.position = position;
+        this.joueur = joueur;
+    }
+
+    public Type_Fruit getType() {
+        return type;
+    }
+
+    public void setType(Type_Fruit type) {
+        this.type = type;
+    }
+
+    public Case getPosition() {
+        return position;
+    }
+
+    public void setPosition(Case position) {
+        this.position = position;
+    }
+
+    public Lanceur getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(Lanceur joueur) {
+        this.joueur = joueur;
+    }
+    
 }
