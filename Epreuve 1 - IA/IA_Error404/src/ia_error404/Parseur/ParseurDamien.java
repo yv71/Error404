@@ -61,7 +61,7 @@ public class ParseurDamien {
                     default:System.out.println("Type case inconnue");
                     break;
                 }
-
+                //Ajout des fruits
                 switch(lettre){
                     case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
                     case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
