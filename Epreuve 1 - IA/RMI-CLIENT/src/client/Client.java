@@ -26,6 +26,7 @@ public class Client {
       final BufferedReader in;
       final PrintWriter out;
       int tour = 0;
+      int tailleMap;
       
      
   
@@ -45,17 +46,25 @@ public class Client {
                 
         
         msg = in.readLine();
-        while(in.readLine()!="FIN"){
-                 
-                 System.out.println(tour);
+        msg = in.readLine();
+        System.out.println(msg);
+        System.out.println("-------");
+        String[] split1 = msg.split("_");
+        String map = split1[2];
+          System.out.println(map);
+        String[] lignesMap = map.split(",");
+        tailleMap = lignesMap[1].length();
+        System.out.println(tailleMap);
+        while(!msg.equals("FIN")){
                  msg = in.readLine();
-                 System.out.println(msg); 
+                 System.out.println(tour);
                  tour ++;
                     
                   msg = "E-E-E\n";
-                  out.println(msg);
+                  out.write(msg);
                   out.flush();
-                    
+                  //msg = in.readLine();
+                  System.out.println(msg);
                  }
                  System.out.println("Serveur déconecté");
                  out.close();
