@@ -31,7 +31,6 @@ public class ParseurDamien {
     }
     
     public static void GenerationMap(Map m,String in){
-        Fabrique fab=Fabrique.get();
         m.clean();
         int tailleMap=ParseurDamien.tailleMap(in);
         String inMap=in.substring(10,tailleMap*tailleMap+tailleMap);
@@ -44,23 +43,24 @@ public class ParseurDamien {
                 Case nouvelleCase=null;
                 Coordonnees coord = new Coordonnees(numLigne, numColonne);
                 switch(lettre){
-                    case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
+                    case 'X':nouvelleCase=Fabrique.construireCase(Type_Case.Mur, numLigne, numColonne, m);
                     break;
-                    case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '.':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
-                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '0':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
-                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '1':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
-                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '2':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
-                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '3':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
-                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                    case '4':nouvelleCase=Fabrique.construireCase(Type_Case.Sol, numLigne, numColonne, m);
                     break;
                     default:System.out.println("Type case inconnue");
                     break;
                 }
+                m.addCase(nouvelleCase);
                 //Ajout des fruits
                 switch(lettre){
                     case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
@@ -69,8 +69,6 @@ public class ParseurDamien {
                     case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
                     case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
                 }
-                //Génération des joueurs
-                
             }
         }
     }
