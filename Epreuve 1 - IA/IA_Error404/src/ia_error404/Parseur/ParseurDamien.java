@@ -30,7 +30,7 @@ public class ParseurDamien {
         return instance;
     }
     
-    public static void Parse(Map m,String in){
+    public static void GenerationMap(Map m,String in){
         Fabrique fab=Fabrique.get();
         m.clean();
         int tailleMap=ParseurDamien.tailleMap(in);
@@ -69,7 +69,8 @@ public class ParseurDamien {
                     case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
                     case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
                 }
-
+                //Génération des joueurs
+                
             }
         }
     }
