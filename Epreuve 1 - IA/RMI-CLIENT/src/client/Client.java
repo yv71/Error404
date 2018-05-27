@@ -52,9 +52,23 @@ public class Client {
         String[] split1 = msg.split("_");
         String map = split1[2];
           System.out.println(map);
-        String[] lignesMap = map.split(",");
-        tailleMap = lignesMap[1].length();
+        String[] lignesMapF = map.split(",");
+        tailleMap = lignesMapF[1].length();
         System.out.println(tailleMap);
+        String[] lignesMap = new String[13];
+        for (int i=0; i<tailleMap;i++){
+            lignesMap[i]= lignesMapF[i+1];
+            System.out.println(lignesMap[i]);
+        }
+        
+        for (int i =0; i<tailleMap ; i++){
+            for (int j = 0; j<tailleMap; j++){
+                
+            }
+        }
+        
+        
+        
         while(!msg.equals("FIN")){
                  msg = in.readLine();
                  System.out.println(tour);

@@ -31,19 +31,16 @@ public class Client {
     private static int tailleMap;
     private static char[][] map_pleine;
     
-public static void main(String[] args) throws IOException, IOException, IOException, IOException {
+   public static void main(String[] args) {
       
-    final Socket clientSocket;
-    final BufferedReader in;
-    final PrintWriter out;
-    Fabrique fab=Fabrique.get();
-    Map m=new Map();
-    Equipe monEquipe=new Equipe("Error 404", numero_equipe);
-    Equipe equipeAdv=new Equipe("Autres", "4");
-    int tour=1;
-
-
- 
+      final Socket clientSocket;
+      final BufferedReader in;
+      final PrintWriter out;
+      int tour = 0;
+      int tailleMap;
+      Fabrique fab = Fabrique.get();
+      Map m = new Map();
+  
       try {
         
          clientSocket = new Socket("192.168.0.16",1337);
@@ -60,151 +57,81 @@ public static void main(String[] args) throws IOException, IOException, IOExcept
                 
         
         msg = in.readLine();
-        while(in.readLine()!="FIN"){
-                 
+        msg = in.readLine();
+        System.out.println(msg);
+        System.out.println("-------");
+        String[] split1 = msg.split("_");
+        String map = split1[2];
+          System.out.println(map);
+        String[] lignesMapF = map.split(",");
+        tailleMap = lignesMapF[1].length();
+        System.out.println(tailleMap);
+        String[] lignesMap = new String[13];
+        for (int i=0; i<tailleMap;i++){
+            lignesMap[i]= lignesMapF[i+1];
+            System.out.println(lignesMap[i]);
+        }
+        
+        for (int numLigne =0; numLigne<tailleMap ; numLigne++){
+            for (int numColonne = 0; numColonne<tailleMap; numColonne++){
+                Case nouvelleCase=null;
+                            Coordonnees coord = new Coordonnees(numLigne, numColonne);
+                            String temp = lignesMap[numLigne];
+                            char lettre = temp.charAt(numLigne);
+                            switch(lettre){
+                                case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
+                                break;
+                                case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                default:System.out.println("Type case inconnue");
+                                break;
+                                }
+                                
+                            switch(lettre){
+                                case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
+                                case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
+                                case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));break;
+                                case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
+                                case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
+                            }
+            }
+        }
+        m.genererGrapheSimple();
+        m.setFruitsOK();
+        String[] infoEquipe = new String[1];
+        switch(split1[0]){
+            case "0" : infoEquipe[0] = split1[3];
+                break;
+            case "1" : infoEquipe[0] = split1[4];
+                break; 
+            case "2" : infoEquipe[0] = split1[5];
+                break;
+            case "3" : infoEquipe[0] = split1[6];
+                break;
+        
+      }
+        
+        
+        while(!msg.equals("FIN")){
                  msg = in.readLine();
-                 System.out.println(msg); 
+                 System.out.println(tour);
                  tour ++;
                     
-                 numero_equipe=msg.substring(0,1);
-                    System.out.println("Numero d'équipe" +numero_equipe );
-                     
-                   
-                    
-
-                          System.out.println(msg);
-                    //Taille de la map 
-                    String temp[] = msg.split("_");
-                          System.out.println("length : " + temp.length);
-                    String[] blocTailleMap = temp[2].split(":");
-                    tailleMap = Integer.parseInt(blocTailleMap[0]);
-                   
-                    System.out.println("Taille map " +tailleMap);
-                    String[] bloc_map = msg.split(",");
-                    String map [][] =new String[tailleMap][tailleMap] ;
-                    
-                    String temp10[] = msg.split("_");
-                    String temp12[] = temp10[2].split(",");
-                    
-                     
-                         for (int j = 1; j < tailleMap+1; j++) {
-                              System.out.println(temp12[j]);
-                         }
-                         
-                         map_pleine=new char[tailleMap][tailleMap];
-                         for (int k = 0; k < tailleMap; k++) {
-                         
-                         for (int i = 0; i < tailleMap; i++) {
-                                
-                                map_pleine[k][i] = temp12[k+1].charAt(i);
-                                
-                             }
-                         }
-                             
-                     ArrayList<String> maliste= new ArrayList();
-                 String[] parseurTeam = msg.split(",");
-                          for (int i = 0; i < 4; i++) 
-                          {
-                             String a = parseurTeam[2+i*16+tailleMap];
-                             String b = parseurTeam[3+i*16+tailleMap];
-                             String c = parseurTeam[4+i*16+tailleMap];
-
-                             String[] aa = a.split(":");
-                             String[] bb = b.split(":");
-                             String[] cc = c.split(":");
-
-                             String aaa = aa[1];
-                             String bbb = aa[2];
-                             String ccc =  aa[3];
-
-                             String ddd = bb[1];
-                             String eee = bb[2];
-                             String fff =  bb[3];
-
-                             String ggg = cc[1];
-                             String hhh = cc[2];
-                             String iii = cc[3];
-
-
-
-
-                             maliste.add(aaa);
-                             maliste.add(bbb);
-                             maliste.add(ccc);
-
-                             maliste.add(ddd);
-                             maliste.add(eee);
-                             maliste.add(fff);
-
-                             maliste.add(ggg);
-                             maliste.add(hhh);
-                             maliste.add(iii);
-
-
-                          }
-                           m.clean();
-                        for(int numLigne=0;numLigne<tailleMap;numLigne++){
-                            System.out.println("taille :" + tailleMap);
-                            for(int numColonne=0;numColonne<tailleMap;numColonne++){
-   
-                                char lettre=map_pleine[numLigne][numColonne];
-                                //creation de la case
-                                Case nouvelleCase=null;
-                                Coordonnees coord = new Coordonnees(numLigne, numColonne);
-                                switch(lettre){
-                                    case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
-                                    break;
-                                    case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
-                                    break;
-                                    default:System.out.println("Type case inconnue");
-                                    break;
-                                }
-                                
-                                switch(lettre){
-                                    case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
-                                    case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
-                                    case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));break;
-                                    case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
-                                    case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
-                                }
-                                
-                            }
-                        }
-                               
-                                m.genererGrapheSimple();
-                                m.setFruitsOK();
-                                m.getGraphe().afficheMatriceAdjacence();
-                                //gestion des entites
-                                Coordonnees coordq = new Coordonnees(new Integer(maliste.get(0)).intValue(),new Integer(maliste.get(1)).intValue());
-                                Coordonnees coordl1 =new Coordonnees(new Integer(maliste.get(3)).intValue(),new Integer(maliste.get(4)).intValue());
-                                Coordonnees coordl2 = new Coordonnees(new Integer(maliste.get(6)).intValue(),new Integer(maliste.get(7)).intValue());
-                                Lanceur q = new Lanceur(m.getHashCase().get(coordq), m, maliste.get(2));
-                                Lanceur l1=new Lanceur(m.getHashCase().get(coordl1), m, maliste.get(5));
-                                Lanceur l2=new Lanceur(m.getHashCase().get(coordl2), m, maliste.get(8));
-                                m.addJoueur(q);
-                                m.addJoueur(l1);
-                                m.addJoueur(l2);
-                                //gestion du tour (IA)
-                                System.out.println(m.getListeJoueur().size());
-                                msg+=m.getListeJoueur().get(0).getAction();
-                                msg+="-";
-                                msg+=m.getListeJoueur().get(1).getAction();
-                                msg+="-";
-                                msg+=m.getListeJoueur().get(2).getAction();
-                                msg+="\n";
-                  out.println(msg);
+                  msg = "E-E-E\n";
+                  out.write(msg);
                   out.flush();
-
+                  //msg = in.readLine();
+                  System.out.println(msg);
                  }
                  System.out.println("Serveur déconecté");
                  out.close();
@@ -213,7 +140,13 @@ public static void main(String[] args) throws IOException, IOException, IOExcept
                    e.printStackTrace();
                }
    }
-}
+        
+        
+         
+      
+   
+    
+  }
         
         
          

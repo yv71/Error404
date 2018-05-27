@@ -79,7 +79,8 @@ public class Map {
                         case Sol : this.graphe.addEdge(c, c2);
                         this.graphe.setLabel(c, c2, 1);
                         break;
-                        default : System.out.println("oops");
+                        default : this.graphe.addEdge(c, c2);
+                        this.graphe.setLabel(c, c2, 1);
                     }
                     }
                

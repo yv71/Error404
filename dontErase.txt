@@ -1,0 +1,137 @@
+public class Client {
+
+    private static String numero_equipe;
+    private static int tailleMap;
+    private static char[][] map_pleine;
+    
+public static void main(String[] args) throws IOException, IOException, IOException, IOException {
+      
+    final Socket clientSocket;
+    final BufferedReader in;
+    final PrintWriter out;
+    Fabrique fab=Fabrique.get();
+    Map m=new Map();
+    Equipe monEquipe=new Equipe("Error 404", numero_equipe);
+    Equipe equipeAdv=new Equipe("Autres", "4");
+    int tour=1;
+
+
+ 
+      try {
+        
+         clientSocket = new Socket("192.168.0.16",1337);
+   
+         //flux pour envoyer
+         out = new PrintWriter(clientSocket.getOutputStream());
+         //flux pour recevoir
+         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+   
+
+        String  msg = "Error 404 not found\n";
+        out.write(msg);
+        out.flush();
+                
+        
+        msg = in.readLine();
+        msg = in.readLine();
+        /** 
+        System.out.println(msg);
+        System.out.println("-------");
+        String[] split1 = msg.split("_");
+        String map2 = split1[2];
+        System.out.println(map2);
+        String[] lignesMapF = map2.split(",");
+        tailleMap = lignesMapF[1].length();
+        System.out.println(tailleMap);
+        String[] lignesMap = new String[13];
+        for (int i=0; i<tailleMap;i++){
+            lignesMap[i]= lignesMapF[i+1];
+            System.out.println(lignesMap[i]);
+        }
+       
+        for (int  numLigne =0; numLigne<tailleMap ; numLigne++){
+            for (int numColonne = 0; numColonne<tailleMap; numColonne++){
+                Case nouvelleCase=null;
+                            Coordonnees coord = new Coordonnees(numLigne, numColonne);
+                            String temp = lignesMap[numLigne];
+                            char lettre = temp.charAt(numLigne);
+                            switch(lettre){
+                                case 'X':nouvelleCase=fab.construireCase(Type_Case.Mur, numLigne, numColonne, m);
+                                break;
+                                case '.':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '0':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '1':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '2':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '3':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                case '4':nouvelleCase=fab.construireCase(Type_Case.Sol, numLigne, numColonne, m);
+                                break;
+                                default:System.out.println("Type case inconnue");
+                                break;
+                                }
+                                
+                            switch(lettre){
+                                case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
+                                case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
+                                case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));break;
+                                case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
+                                case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
+                            }
+                                
+            }
+        }
+        
+        m.genererGrapheSimple();
+        m.setFruitsOK();**/
+        while(!in.readLine().equals("FIN")){
+                 
+                 msg = in.readLine();
+                  /**  
+                 numero_equipe=msg.substring(0,1);
+                    System.out.println("Numero d'équipe" +numero_equipe );
+                     
+                   
+                    
+
+                          System.out.println(msg);
+                    //Taille de la map 
+                   
+                           //m.clean();
+                       
+                               
+                                //gestion des entites
+                                Coordonnees coordq = new Coordonnees(new Integer(maliste.get(0)).intValue(),new Integer(maliste.get(1)).intValue());
+                                Coordonnees coordl1 =new Coordonnees(new Integer(maliste.get(3)).intValue(),new Integer(maliste.get(4)).intValue());
+                                Coordonnees coordl2 = new Coordonnees(new Integer(maliste.get(6)).intValue(),new Integer(maliste.get(7)).intValue());
+                                Lanceur q = new Lanceur(m.getHashCase().get(coordq), m, maliste.get(2));
+                                Lanceur l1=new Lanceur(m.getHashCase().get(coordl1), m, maliste.get(5));
+                                Lanceur l2=new Lanceur(m.getHashCase().get(coordl2), m, maliste.get(8));
+                                m.addJoueur(q);
+                                m.addJoueur(l1);
+                                m.addJoueur(l2);
+                                //gestion du tour (IA)
+                                System.out.println(m.getListeJoueur().size());
+                                msg+=m.getListeJoueur().get(0).getAction();
+                                msg+="-";
+                                msg+=m.getListeJoueur().get(1).getAction();
+                                msg+="-";
+                                msg+=m.getListeJoueur().get(2).getAction();
+                                msg+="\n"; **/
+                  msg = "E-E-E\n";
+                  out.write(msg);
+                  out.flush();
+                  System.out.println(msg);
+                  
+                 }
+                 System.out.println("Serveur déconecté");
+                 out.close();
+                 clientSocket.close();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+   }
+}
