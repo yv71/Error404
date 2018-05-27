@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
+import static java.lang.Thread.sleep;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -30,7 +31,7 @@ public class Client {
     private static int tailleMap;
     private static char[][] map_pleine;
     
-public static void main(String[] args) {
+public static void main(String[] args) throws IOException, IOException, IOException, IOException {
       
     final Socket clientSocket;
     final BufferedReader in;
@@ -42,65 +43,67 @@ public static void main(String[] args) {
     int tour=1;
 
 
-    try {
+ 
+      try {
+        
+         clientSocket = new Socket("192.168.0.16",1337);
+   
+         //flux pour envoyer
+         out = new PrintWriter(clientSocket.getOutputStream());
+         //flux pour recevoir
+         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+   
 
-        clientSocket = new Socket("100.64.87.0",1337);
+        String  msg = "Error 404 not found\n";
+        out.println(msg);
+        out.flush();
+                
+        
+        msg = in.readLine();
+        while(in.readLine()!="FIN"){
+                 
+                 System.out.println(tour);
+                 msg = in.readLine();
+                 System.out.println(msg); 
+                 tour ++;
+                    
+                 numero_equipe=msg.substring(0,1);
+                    System.out.println("Numero d'équipe" +numero_equipe );
+                     
+                   
+                    
 
-        //flux pour envoyer
-        out = new PrintWriter(clientSocket.getOutputStream());
-        //flux pour recevoir
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-        Thread envoyer = new Thread(new Runnable() {
-            String msg;
-            @Override
-            public void run() {
-                while(true){
-                    msg = "Error 404 not found\n";
-                    out.println(msg);
-                    out.flush();
-                }
-            }
-        });
-        envoyer.start();
-
-        Thread recevoir = new Thread(new Runnable() {
-            String msg;
-            @Override
-            public void run() {
-                try {
-                    msg = in.readLine();
-                    while(msg!=null){
-                        //System.out.println("valeur-basique "+msg);
-
-                        //Recuperation du numero de team 
-                        numero_equipe=msg.substring(0,1);
-                        System.out.println("Numero d'équipe" +numero_equipe );
-
-                        msg = in.readLine();
-                        //Taille de la map 
-                        String temp[] = msg.split("_");
-
-                        String[] blocTailleMap = temp[2].split(":");
-                        tailleMap = Integer.parseInt(blocTailleMap[0]);
-
-                        System.out.println("Taille map " +tailleMap);
-                        String[] bloc_map = msg.split(",");
-                        String map [][] =new String[tailleMap][tailleMap] ;
-
-                        String temp10[] = msg.split("_");
-                        String temp12[] = temp10[2].split(",");
-
-                        map_pleine=new char[tailleMap][tailleMap];
-                        for (int k = 0; k < tailleMap; k++) {
-                            for (int i = 0; i < tailleMap; i++) {
+                          System.out.println(msg);
+                    //Taille de la map 
+                    String temp[] = msg.split("_");
+                          System.out.println("length : " + temp.length);
+                    String[] blocTailleMap = temp[2].split(":");
+                    tailleMap = Integer.parseInt(blocTailleMap[0]);
+                   
+                    System.out.println("Taille map " +tailleMap);
+                    String[] bloc_map = msg.split(",");
+                    String map [][] =new String[tailleMap][tailleMap] ;
+                    
+                    String temp10[] = msg.split("_");
+                    String temp12[] = temp10[2].split(",");
+                    
+                     
+                         for (int j = 1; j < tailleMap+1; j++) {
+                              System.out.println(temp12[j]);
+                         }
+                         
+                         map_pleine=new char[tailleMap][tailleMap];
+                         for (int k = 0; k < tailleMap; k++) {
+                         
+                         for (int i = 0; i < tailleMap; i++) {
+                                
                                 map_pleine[k][i] = temp12[k+1].charAt(i);
-                            }
-                        }
-                            ArrayList<String> maliste= new ArrayList();
-                      String[] parseurTeam = msg.split(",");
-
-
+                                
+                             }
+                         }
+                             
+                     ArrayList<String> maliste= new ArrayList();
+                 String[] parseurTeam = msg.split(",");
                           for (int i = 0; i < 4; i++) 
                           {
                              String a = parseurTeam[2+i*16+tailleMap];
@@ -200,32 +203,21 @@ public static void main(String[] args) {
                                 msg+="-";
                                 msg+=m.getListeJoueur().get(2).getAction();
                                 msg+="\n";
-                                System.out.println("---------");
-                                System.out.println(msg);
-                          
-                    }
-                    System.out.println("Serveur déconecté");
-                    out.close();
-                    clientSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Thread envoyer = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while(true){
-                        out.println(msg);
-                        out.flush();
-                    }
-            }
-        });
-        envoyer.start();
-            }
-        });
-        recevoir.start();
+                  out.println(msg);
+                  out.flush();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+                 }
+                 System.out.println("Serveur déconecté");
+                 out.close();
+                 clientSocket.close();
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
+   }
 }
+        
+        
+         
+      
+   
+  

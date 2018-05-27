@@ -30,7 +30,6 @@ public abstract class IA {
         for (Fruit f : this.getMap().getListeFruitsOK()){
             visited.put(f,false);
         }
-        System.out.println(visited.values());
     }
     
     public Map getMap(){

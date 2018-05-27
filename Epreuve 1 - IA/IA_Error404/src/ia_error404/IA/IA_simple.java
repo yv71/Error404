@@ -24,10 +24,12 @@ public class IA_simple extends IA{
         Case cC = this.getJoueur().getCase();
         String retour = "X";
         int X = cC.getX();
+        
         int Y = cC.getY();
+        System.out.println("X : " + X + " Y "+ Y);
         int suivX = CaseSuivante.getX();
         int suivY = CaseSuivante.getY();
-        if (CaseSuivante.getJoueur() == null){
+        System.out.println("X : " + suivX + " Y "+ suivY);
             if (X!=suivX){
                     if (suivX == X-1){
                         retour = "N";
@@ -38,12 +40,11 @@ public class IA_simple extends IA{
                 }
                 if (Y!=suivY){
                     if (suivY == Y-1){
-                        retour = "O";
-                    }
-                    if (suivY == Y+1){
                         retour = "E";
                     }
-                }
+                    if (suivY == Y+1){
+                        retour = "O";
+                    }
                 this.algo.destroyFirst();
                 this.getJoueur().getCase().removeLanceur();
                 CaseSuivante.addLanceur(this.getJoueur());
@@ -56,14 +57,9 @@ public class IA_simple extends IA{
     public String action() {
         System.out.println("testssss");
         String retour = "X";
-        
-        if (this.turn ==0){
-            if (this.getMap().getListeFruitsOK().size()>0){
-                this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
-            }
-        }
+        this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
-        else if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
+        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
@@ -73,9 +69,11 @@ public class IA_simple extends IA{
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.baseProche()));
         } 
         else {
+            System.out.println("try");
             retour = noeudToAction(this.algo.getPath().get(0).getCase());
         }
         System.out.println("---------------------" + retour);
+        turn++;
         return retour;
     }
     
