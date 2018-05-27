@@ -7,6 +7,7 @@ package ia_error404.Parseur;
 
 import ia_error404.Cases.Case;
 import ia_error404.Cases.Case_Base;
+import ia_error404.Cases.Case_Mur;
 import ia_error404.Cases.Case_Sol;
 import ia_error404.Cases.Type_Case;
 import ia_error404.Map;

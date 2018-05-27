@@ -62,7 +62,6 @@ public static void main(String[] args) throws IOException, IOException, IOExcept
         msg = in.readLine();
         while(in.readLine()!="FIN"){
                  
-                 System.out.println(tour);
                  msg = in.readLine();
                  System.out.println(msg); 
                  tour ++;
