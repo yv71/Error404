@@ -83,4 +83,8 @@ public class Lanceur {
     public String getAction(){
         return this.ia.action();
     }
+    
+    public void setCase(Case c){
+        this.position = c;
+    }
 }

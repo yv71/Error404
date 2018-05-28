@@ -37,6 +37,7 @@ public class Dijkstra {
     }
     
     public void initialisation(){
+        this.path = new ArrayList<Vertex>();
         int max = getInfini();
         for (Vertex v : graph.getVertices().values()){
             distance.put(v,max);

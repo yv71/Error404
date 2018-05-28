@@ -43,7 +43,7 @@ public class Client {
   
       try {
         
-         clientSocket = new Socket("172.23.4.221",1337);
+         clientSocket = new Socket("172.23.4.222",1337);
    
          //flux pour envoyer
          out = new PrintWriter(clientSocket.getOutputStream());
@@ -145,21 +145,22 @@ public class Client {
       Coordonnees cQ = new Coordonnees(posQX, posQY);
       Coordonnees cL1 = new Coordonnees(posL1X, posL1Y);
       Coordonnees CL2 = new Coordonnees(posL2X, posL2Y);
-      m.addBase(m.getHash().get(cQ));
-      m.addBase(m.getHash().get(cL1));
-      m.addBase(m.getHash().get(CL2));
+
       Lanceur Q = new Lanceur((m.getHash().get(cQ)),m,"x");
       Lanceur L1 = new Lanceur((m.getHash().get(cL1)),m,"x");
       Lanceur L2 = new Lanceur((m.getHash().get(CL2)),m,"x");      
+      m.addBase(Q,m.getHash().get(cQ));
+      m.addBase(L1,m.getHash().get(cL1));
+      m.addBase(L2,m.getHash().get(CL2));
         while(!msg.equals("FIN")){
                  msg = in.readLine();
                  System.out.println(tour);
                  tour ++;
                  msg = "";
-                 msg+=Q.getAction()+"-";
+                 msg+=Q.getAction()+"-X-X\n";
                  System.out.println("----------------");
-                 msg+=L1.getAction()+"-";
-                 msg+=L2.getAction()+"\n";
+                 //msg+=L1.getAction()+"-";
+                 //msg+=L2.getAction()+"\n";
                  
                  //msg = "E-E-E\n";
                   out.write(msg);

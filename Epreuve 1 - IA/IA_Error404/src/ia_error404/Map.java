@@ -26,7 +26,7 @@ public class Map {
     private ArrayList<Case> listeCase;
     private  ArrayList<Fruit> listeFruits;
     private ArrayList<Fruit> listeFruitsOK;
-    private  ArrayList<Case> listeBase;
+    private  HashMap<Lanceur,Case> listeBase;
     private  ArrayList<Lanceur> listeJoueur;
     private  HashMap<Coordonnees,Case> hashCase;
     private ArrayList<Equipe> listeEquipe;
@@ -40,7 +40,7 @@ public class Map {
         this.listeCase = new ArrayList<Case>();
         this.listeFruits = new ArrayList<Fruit>();
         this.listeFruitsOK = new ArrayList<Fruit>();
-        this.listeBase = new ArrayList<Case>();
+        this.listeBase = new HashMap<Lanceur,Case>();
         this.listeJoueur = new ArrayList<Lanceur>();
         this.hashCase = new HashMap<>();
         this.listeEquipe= new ArrayList<Equipe>();
@@ -136,15 +136,15 @@ public class Map {
         this.hashCase.put(c.getCoord(),c);
     }
     
-    public void addBase(Case c){
-        this.listeBase.add(c);
+    public void addBase(Lanceur l,Case c){
+        this.listeBase.put(l,c);
     }
    
-    public ArrayList<Case> getBase(){
+    public HashMap<Lanceur,Case> getBase(){
         return this.listeBase;
     }
 
-    public ArrayList<Case> getListeBase() {
+    public HashMap<Lanceur,Case> getListeBase() {
         return listeBase;
     }
 
