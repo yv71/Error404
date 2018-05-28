@@ -45,12 +45,12 @@ public class IA_simple extends IA{
                 }
                 if (Y!=suivY){
                     if (suivY == Y-1){
-                        retour = "E";
+                        retour = "O";
                         Coordonnees nCoord = new Coordonnees(X,Y-1);
                         this.getJoueur().setCase(this.getMap().getHash().get(nCoord));
                     }
                     if (suivY == Y+1){
-                        retour = "O";
+                        retour = "E";
                         Coordonnees nCoord = new Coordonnees(X,Y+1);
                         this.getJoueur().setCase(this.getMap().getHash().get(nCoord));
                     }
@@ -74,6 +74,8 @@ public class IA_simple extends IA{
         }
         else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()==null && this.getJoueur().getCase()==this.getMap().getListeBase().get(this.getJoueur())){
             System.out.println("inventaire = null");
+            this.getMap().getListeFruitsOK().remove(this.getJoueur().getInventaire());
+            this.getMap().getListeFruits().remove(this.getJoueur().getInventaire());
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
