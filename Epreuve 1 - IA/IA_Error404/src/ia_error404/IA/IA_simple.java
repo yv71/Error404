@@ -98,10 +98,10 @@ public class IA_simple extends IA{
         return minFruit;
     }
     
-    public Case_Base baseProche(){
-        Case_Base minBase = this.getMap().getBase().get(0);
+    public Case baseProche(){
+        Case minBase = this.getMap().getBase().get(0);
         int shortest = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(minBase));
-        for (Case_Base c : this.getMap().getBase()){
+        for (Case c : this.getMap().getBase()){
             int shortestF = this.algo.getShortest(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()),this.getMap().getGraphe().getVertex(c));
             if (shortestF<shortest){
                 shortest = shortestF;
