@@ -45,11 +45,12 @@ public class IA_simple extends IA{
                     if (suivY == Y+1){
                         retour = "O";
                     }
+                     }
                 this.algo.destroyFirst();
                 this.getJoueur().getCase().removeLanceur();
                 CaseSuivante.addLanceur(this.getJoueur());
                 
-        }
+        
         return retour;
     }
     
@@ -57,14 +58,17 @@ public class IA_simple extends IA{
     public String action() {
         System.out.println("testssss");
         String retour = "X";
-        this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
-        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()!=null){
+        if (this.turn == 0){
+            turn ++;
+            this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
+        }
+        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
         // Action lorsque le joueur vient de ramasser son fruit;
-        else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()==null){
+        else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()!=null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.baseProche()));
         } 
