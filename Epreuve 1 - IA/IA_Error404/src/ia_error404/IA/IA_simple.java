@@ -59,20 +59,18 @@ public class IA_simple extends IA{
         String retour = "X";
         this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         // Action lorsque le joueur n'a rien dans son inventaire = début || vient de poser/lancer un fruit
-        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()==null){
+        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()!=null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
         // Action lorsque le joueur vient de ramasser son fruit;
-        else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()!=null){
+        else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()==null){
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.baseProche()));
         } 
         else {
-            System.out.println("try");
             retour = noeudToAction(this.algo.getPath().get(0).getCase());
         }
-        System.out.println("---------------------" + retour);
         turn++;
         return retour;
     }

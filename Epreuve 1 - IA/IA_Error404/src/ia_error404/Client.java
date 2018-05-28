@@ -31,7 +31,7 @@ public class Client {
     private static int tailleMap;
     private static char[][] map_pleine;
     
-   public static void main(String[] args) {
+   public static void main(String[] args) throws InterruptedException {
       
       final Socket clientSocket;
       final BufferedReader in;
@@ -122,34 +122,51 @@ public class Client {
       }
       String[] infoTeam = infoEquipe.split(",");
           System.out.println(infoTeam.length + " test");
-      String infoQ = infoTeam[3];
-      String infoL1 = infoTeam[4];
-      String infoL2 = infoTeam[5];
+      String infoQ = infoTeam[2];
+      String infoL1 = infoTeam[3];
+      String infoL2 = infoTeam[4];
+          System.out.println(infoL2);
       String[] infoQt= infoQ.split(":");
       String[] infoL1t= infoL1.split(":");
       String[] infoL2t= infoL2.split(":");
+      
       int posQX = Integer.parseInt(infoQt[1]);
+          System.out.println(infoQt[1]);
       int posQY = Integer.parseInt(infoQt[2]);
+      System.out.println(infoQt[2]);
       int posL1X = Integer.parseInt(infoL1t[1]);
+      System.out.println(infoL1t[1]);
       int posL1Y = Integer.parseInt(infoL1t[2]);
+      System.out.println(infoL1t[2]);
       int posL2X = Integer.parseInt(infoL2t[1]);
+      System.out.println(infoL2t[1]);
       int posL2Y = Integer.parseInt(infoL2t[2]);
+      System.out.println(infoL2t[2]);
       Coordonnees cQ = new Coordonnees(posQX, posQY);
       Coordonnees cL1 = new Coordonnees(posL1X, posL1Y);
       Coordonnees CL2 = new Coordonnees(posL2X, posL2Y);
-      
-              
-      
+      m.addBase(m.getHash().get(cQ));
+      m.addBase(m.getHash().get(cL1));
+      m.addBase(m.getHash().get(CL2));
+      Lanceur Q = new Lanceur((m.getHash().get(cQ)),m,"x");
+      Lanceur L1 = new Lanceur((m.getHash().get(cL1)),m,"x");
+      Lanceur L2 = new Lanceur((m.getHash().get(CL2)),m,"x");      
         while(!msg.equals("FIN")){
                  msg = in.readLine();
                  System.out.println(tour);
                  tour ++;
-                    
-                  msg = "E-E-E\n";
+                 msg = "";
+                 msg+=Q.getAction()+"-";
+                 System.out.println("----------------");
+                 msg+=L1.getAction()+"-";
+                 msg+=L2.getAction()+"\n";
+                 
+                 //msg = "E-E-E\n";
                   out.write(msg);
                   out.flush();
                   //msg = in.readLine();
                   System.out.println(msg);
+                //  sleep(80000);
                  }
                  System.out.println("Serveur déconecté");
                  out.close();

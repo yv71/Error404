@@ -132,7 +132,7 @@ public class Map {
         this.hashCase.put(c.getCoord(),c);
     }
     
-    public void addBase(Case_Base c){
+    public void addBase(Case c){
         this.listeBase.add(c);
     }
    

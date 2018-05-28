@@ -61,6 +61,7 @@ public class Dijkstra {
     }
             
     public int getShortest(Vertex _debug, Vertex _fin){
+        ArrayList<Vertex> chemin = new ArrayList<Vertex>();
         this.debut = _debug;
         this.fin = _fin;
         this.initialisation();
@@ -73,13 +74,13 @@ public class Dijkstra {
         }
         Vertex v = fin;
         while (v !=null){ 
-            path.add(0,v);
+            chemin.add(0,v);
             v = predecessor.get(v);
             //System.out.println(v);
         }
-        path.remove(0);
+        chemin.remove(0);
         
-        return this.path.size();
+        return chemin.size();
  
     }      
     
