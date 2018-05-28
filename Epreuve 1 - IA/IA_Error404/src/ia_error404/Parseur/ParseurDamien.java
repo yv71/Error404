@@ -30,15 +30,14 @@ public class ParseurDamien {
         return instance;
     }
     
-    public static void GenerationMap(Map m,String in){
+    private static void GenerationMap(Map m,String in){
         m.clean();
         int tailleMap=ParseurDamien.tailleMap(in);
-        String inMap=in.substring(10,tailleMap*tailleMap+tailleMap);
-        String tabLigne[] = inMap.split(",");
+        String tabLigne[] = in.split(",");
         for(int numLigne=0;numLigne<tailleMap;numLigne++){
             for(int numColonne=0;numColonne<tailleMap;numColonne++){
 
-                char lettre=tabLigne[numLigne].charAt(numColonne);
+                char lettre=tabLigne[numLigne+1].charAt(numColonne);
                 //creation de la case
                 Case nouvelleCase=null;
                 Coordonnees coord = new Coordonnees(numLigne, numColonne);
@@ -63,11 +62,16 @@ public class ParseurDamien {
                 m.addCase(nouvelleCase);
                 //Ajout des fruits
                 switch(lettre){
-                    case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));break;
-                    case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));break;
-                    case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));break;
-                    case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));break;
-                    case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));break;
+                    case '0':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.mirabelle,nouvelleCase,null));
+                    break;
+                    case '1':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.prune,nouvelleCase,null));
+                    break;
+                    case '2':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.cerise,nouvelleCase,null));
+                    break;
+                    case '3':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.framboise,nouvelleCase,null));
+                    break;
+                    case '4':m.getHashCase().get(coord).setInventaire(new Fruit(Type_Fruit.chataigne,nouvelleCase,null));
+                    break;
                 }
             }
         }
@@ -83,4 +87,14 @@ public class ParseurDamien {
         return Integer.parseInt(res);
     }
     
+    public static void traitement(Map m,String in){
+        String[] inDecoup=in.split("_");
+        ParseurDamien.GenerationMap(m, inDecoup[2]);
+        
+    }
+    
+    private static void GenerationEquipe(Map m, String in){
+        String[] inEquipe=in.split(",");
+        m.addEquipe(new Equipe(inEquipe[0],inEquipe[inEquipe.length-1]));
+    }
 }
