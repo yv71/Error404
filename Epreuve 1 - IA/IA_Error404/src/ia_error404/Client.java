@@ -43,7 +43,7 @@ public class Client {
   
       try {
         
-         clientSocket = new Socket("192.168.0.16",1337);
+         clientSocket = new Socket("172.23.4.221",1337);
    
          //flux pour envoyer
          out = new PrintWriter(clientSocket.getOutputStream());
@@ -108,20 +108,27 @@ public class Client {
         }
         m.genererGrapheSimple();
         m.setFruitsOK();
-        String[] infoEquipe = new String[1];
+        String infoEquipe= "";
         switch(split1[0]){
-            case "0" : infoEquipe[0] = split1[3];
+            case "0" : infoEquipe= split1[3];
                 break;
-            case "1" : infoEquipe[0] = split1[4];
+            case "1" : infoEquipe= split1[4];
                 break; 
-            case "2" : infoEquipe[0] = split1[5];
+            case "2" : infoEquipe = split1[5];
                 break;
-            case "3" : infoEquipe[0] = split1[6];
+            case "3" : infoEquipe = split1[6];
                 break;
         
       }
-        
-        
+      String[] infoTeam = infoEquipe.split(",");
+          System.out.println(infoTeam.length + " test");
+      String infoQ = infoTeam[3];
+      String infoL1 = infoTeam[4];
+      String infoL2 = infoTeam[5];
+      String[] infoQt= infoQ.split(":");
+      String[] infoL1t= infoL1.split(":");
+      String[] infoL2t= infoL2.split(":");
+      
         while(!msg.equals("FIN")){
                  msg = in.readLine();
                  System.out.println(tour);
