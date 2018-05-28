@@ -43,7 +43,7 @@ public class Client {
   
       try {
         
-         clientSocket = new Socket("172.23.4.222",1337);
+         clientSocket = new Socket("172.23.4.123",1337);
    
          //flux pour envoyer
          out = new PrintWriter(clientSocket.getOutputStream());

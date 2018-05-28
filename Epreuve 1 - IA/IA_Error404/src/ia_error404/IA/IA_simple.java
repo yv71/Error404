@@ -72,7 +72,7 @@ public class IA_simple extends IA{
             turn ++;
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
         }
-        if (this.algo.getPath().isEmpty()&& this.getJoueur().getInventaire()!=null){
+        else if (this.algo.getPath().isEmpty() && this.getJoueur().getInventaire()==null && this.getJoueur().getCase()==this.getMap().getListeBase().get(this.getJoueur())){
             System.out.println("inventaire = null");
             retour = "P";
             this.algo.calcul(this.getMap().getGraphe().getVertex(this.getJoueur().getCase()), this.getMap().getGraphe().getVertex(this.minFruit().getPosition()));
