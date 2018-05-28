@@ -128,6 +128,17 @@ public class Client {
       String[] infoQt= infoQ.split(":");
       String[] infoL1t= infoL1.split(":");
       String[] infoL2t= infoL2.split(":");
+      int posQX = Integer.parseInt(infoQt[1]);
+      int posQY = Integer.parseInt(infoQt[2]);
+      int posL1X = Integer.parseInt(infoL1t[1]);
+      int posL1Y = Integer.parseInt(infoL1t[2]);
+      int posL2X = Integer.parseInt(infoL2t[1]);
+      int posL2Y = Integer.parseInt(infoL2t[2]);
+      Coordonnees cQ = new Coordonnees(posQX, posQY);
+      Coordonnees cL1 = new Coordonnees(posL1X, posL1Y);
+      Coordonnees CL2 = new Coordonnees(posL2X, posL2Y);
+      
+              
       
         while(!msg.equals("FIN")){
                  msg = in.readLine();
