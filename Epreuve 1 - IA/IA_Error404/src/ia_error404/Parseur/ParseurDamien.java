@@ -11,6 +11,7 @@ import ia_error404.Coordonnees;
 import ia_error404.Map;
 import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
+import ia_error404.Team.Equipe;
 
 /**
  *
