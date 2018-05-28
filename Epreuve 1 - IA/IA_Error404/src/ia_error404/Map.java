@@ -12,6 +12,7 @@ import ia_error404.Cases.Case_Base;
 import ia_error404.Graphe.Graphe;
 import ia_error404.Objet.Fruit;
 import ia_error404.Objet.Type_Fruit;
+import ia_error404.Team.Equipe;
 import ia_error404.Team.Lanceur;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class Map {
     private  ArrayList<Case> listeBase;
     private  ArrayList<Lanceur> listeJoueur;
     private  HashMap<Coordonnees,Case> hashCase;
+    private ArrayList<Equipe> listeEquipe;
 
     private Graphe graphe;
     
@@ -41,6 +43,7 @@ public class Map {
         this.listeBase = new ArrayList<Case>();
         this.listeJoueur = new ArrayList<Lanceur>();
         this.hashCase = new HashMap<>();
+        this.listeEquipe= new ArrayList<Equipe>();
     }
     public void clean(){
         this.graphe = new Graphe();
@@ -50,6 +53,7 @@ public class Map {
  
         this.listeJoueur = new ArrayList<Lanceur>();
         this.hashCase = new HashMap<>();
+        this.listeEquipe= new ArrayList<Equipe>();
     }
     public HashMap<Coordonnees,Case> getHash(){
         return this.hashCase;
@@ -160,6 +164,9 @@ public class Map {
         this.hashCase.put(c,cc);
     }
     
+    public void addEquipe(Equipe e){
+        this.listeEquipe.add(e);
+    }
     
     
 }
